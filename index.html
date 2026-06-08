@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -21,30 +21,35 @@
     <link rel="stylesheet" href="./src/css/output.css" />
     <style>
       #view-all-btn {
-        border: 1px solid #C9A84C;
-        color: #C9A84C;
+        border: 1px solid #c9a84c;
+        color: #c9a84c;
         background: transparent;
         padding: 16px 52px;
-        font-family: 'Playfair Display', serif;
+        font-family: "Playfair Display", serif;
         font-size: 12px;
         letter-spacing: 0.28em;
         text-transform: uppercase;
         cursor: pointer;
         position: relative;
         overflow: hidden;
-        transition: all 400ms cubic-bezier(0.16,1,0.3,1);
+        transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       #view-all-btn::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: -100%;
         width: 60%;
         height: 100%;
-        background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
         transform: skewX(-20deg);
-        transition: left 600ms cubic-bezier(0.16,1,0.3,1);
+        transition: left 600ms cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       #view-all-btn:hover::before {
@@ -52,7 +57,7 @@
       }
 
       #view-all-btn:hover {
-        background: rgba(201,168,76,0.07);
+        background: rgba(201, 168, 76, 0.07);
       }
 
       #view-all-btn:hover #view-all-arrow {
@@ -63,13 +68,17 @@
         display: flex;
         align-items: center;
         gap: 0;
-        border: 1px solid rgba(201,168,76,0.15);
+        border: 1px solid rgba(201, 168, 76, 0.15);
         border-left: 3px solid transparent;
         background: #111111;
         margin-bottom: 2px;
         opacity: 0;
         transform: translateY(20px);
-        transition: border-left-color 400ms ease, box-shadow 400ms ease, opacity 600ms cubic-bezier(0.16,1,0.3,1), transform 600ms cubic-bezier(0.16,1,0.3,1);
+        transition:
+          border-left-color 400ms ease,
+          box-shadow 400ms ease,
+          opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+          transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       .all-prop-row.visible {
@@ -78,8 +87,8 @@
       }
 
       .all-prop-row:hover {
-        border-left-color: #C9A84C;
-        box-shadow: -4px 0 30px rgba(201,168,76,0.08);
+        border-left-color: #c9a84c;
+        box-shadow: -4px 0 30px rgba(201, 168, 76, 0.08);
       }
 
       .all-prop-row img {
@@ -89,7 +98,7 @@
         object-fit: cover;
         display: block;
         overflow: hidden;
-        transition: transform 600ms cubic-bezier(0.16,1,0.3,1);
+        transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       .all-prop-row:hover img {
@@ -105,12 +114,12 @@
         font-size: 10px;
         letter-spacing: 0.2em;
         text-transform: uppercase;
-        color: #C9A84C;
+        color: #c9a84c;
         margin-bottom: 8px;
       }
 
       .all-prop-title {
-        font-family: 'Playfair Display', serif;
+        font-family: "Playfair Display", serif;
         font-size: 22px;
         font-weight: 700;
         color: #ffffff;
@@ -127,40 +136,40 @@
         font-size: 10px;
         text-transform: uppercase;
         letter-spacing: 0.15em;
-        color: rgba(255,255,255,0.45);
+        color: rgba(255, 255, 255, 0.45);
       }
 
       .all-prop-meta span b {
         display: block;
-        color: #C9A84C;
+        color: #c9a84c;
         margin-bottom: 3px;
         font-weight: 600;
       }
 
       .all-prop-price {
         margin-top: 16px;
-        font-family: 'Playfair Display', serif;
+        font-family: "Playfair Display", serif;
         font-size: 18px;
-        color: #C9A84C;
+        color: #c9a84c;
         font-weight: 600;
       }
 
       .all-prop-whatsapp {
         margin-right: 32px;
         white-space: nowrap;
-        border: 1px solid #C9A84C;
-        color: #C9A84C;
+        border: 1px solid #c9a84c;
+        color: #c9a84c;
         padding: 12px 24px;
         font-size: 10px;
         letter-spacing: 0.18em;
         text-transform: uppercase;
         text-decoration: none;
-        transition: all 400ms cubic-bezier(0.16,1,0.3,1);
+        transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
         flex-shrink: 0;
       }
 
       .all-prop-whatsapp:hover {
-        background: #C9A84C;
+        background: #c9a84c;
         color: #080808;
       }
 
@@ -185,14 +194,14 @@
     </style>
     <style>
       @property --angle {
-        syntax: '<angle>';
+        syntax: "<angle>";
         initial-value: 0deg;
         inherits: false;
       }
 
       :root {
-        --eid-gold: #C9A84C;
-        --eid-gold-light: #E8C97A;
+        --eid-gold: #c9a84c;
+        --eid-gold-light: #e8c97a;
         --eid-ease: cubic-bezier(0.16, 1, 0.3, 1);
       }
 
@@ -206,7 +215,10 @@
         transform: translate(-50%, -50%);
         z-index: 99999;
         opacity: 0;
-        transition: opacity 250ms ease, transform 300ms var(--eid-ease), background-color 300ms ease;
+        transition:
+          opacity 250ms ease,
+          transform 300ms var(--eid-ease),
+          background-color 300ms ease;
         will-change: transform;
       }
 
@@ -277,7 +289,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: 'Playfair Display', serif;
+        font-family: "Playfair Display", serif;
         font-size: clamp(2rem, 6vw, 5rem);
         color: var(--eid-gold);
         letter-spacing: 0.15em;
@@ -303,7 +315,11 @@
         z-index: 99998;
         width: 0%;
         height: 2px;
-        background: linear-gradient(to right, var(--eid-gold), var(--eid-gold-light));
+        background: linear-gradient(
+          to right,
+          var(--eid-gold),
+          var(--eid-gold-light)
+        );
         transition: width 50ms linear;
       }
 
@@ -324,14 +340,18 @@
         display: inline-block;
         opacity: 0;
         transform: translateY(40px);
-        transition: opacity 700ms var(--eid-ease), transform 700ms var(--eid-ease);
+        transition:
+          opacity 700ms var(--eid-ease),
+          transform 700ms var(--eid-ease);
       }
 
       #home .hero-cinematic-subtext,
       #home .hero-cinematic-cta {
         opacity: 0;
         transform: translateY(20px);
-        transition: opacity 700ms var(--eid-ease), transform 700ms var(--eid-ease);
+        transition:
+          opacity 700ms var(--eid-ease),
+          transform 700ms var(--eid-ease);
       }
 
       #home .hero-cinematic-visible {
@@ -349,10 +369,17 @@
         top: 24%;
         width: 1px;
         height: 52%;
-        background: linear-gradient(to bottom, transparent, rgba(201, 168, 76, 0.65), transparent);
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          rgba(201, 168, 76, 0.65),
+          transparent
+        );
         opacity: 0;
         transform: scaleY(0);
-        transition: opacity 700ms var(--eid-ease), transform 700ms var(--eid-ease);
+        transition:
+          opacity 700ms var(--eid-ease),
+          transform 700ms var(--eid-ease);
       }
 
       .stats-line.line-visible {
@@ -367,7 +394,11 @@
       .property-card.cinematic-card {
         opacity: 0;
         transform: translateY(35px);
-        transition: opacity 700ms var(--eid-ease), transform 700ms var(--eid-ease), box-shadow 500ms var(--eid-ease), border-color 500ms var(--eid-ease);
+        transition:
+          opacity 700ms var(--eid-ease),
+          transform 700ms var(--eid-ease),
+          box-shadow 500ms var(--eid-ease),
+          border-color 500ms var(--eid-ease);
       }
 
       .property-card.cinematic-card.card-visible {
@@ -376,7 +407,9 @@
       }
 
       .property-card img {
-        transition: transform 600ms var(--eid-ease), opacity 500ms ease;
+        transition:
+          transform 600ms var(--eid-ease),
+          opacity 500ms ease;
       }
 
       .property-card:hover img {
@@ -389,7 +422,11 @@
         top: 0;
         width: 100%;
         height: 18rem;
-        background: linear-gradient(to top, rgba(201, 168, 76, 0.18) 0%, transparent 65%);
+        background: linear-gradient(
+          to top,
+          rgba(201, 168, 76, 0.18) 0%,
+          transparent 65%
+        );
         opacity: 0;
         pointer-events: none;
         transition: opacity 500ms ease;
@@ -415,9 +452,18 @@
         inset: -1px;
         z-index: -1;
         padding: 1px;
-        background: conic-gradient(from var(--angle), transparent 20%, var(--eid-gold) 40%, var(--eid-gold-light) 50%, var(--eid-gold) 60%, transparent 80%);
+        background: conic-gradient(
+          from var(--angle),
+          transparent 20%,
+          var(--eid-gold) 40%,
+          var(--eid-gold-light) 50%,
+          var(--eid-gold) 60%,
+          transparent 80%
+        );
         animation: rotateBorder 3s linear infinite;
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
       }
@@ -429,7 +475,9 @@
       .section-label.cinematic-reveal-label {
         opacity: 0;
         letter-spacing: 0.05em;
-        transition: opacity 800ms var(--eid-ease), letter-spacing 800ms var(--eid-ease);
+        transition:
+          opacity 800ms var(--eid-ease),
+          letter-spacing 800ms var(--eid-ease);
       }
 
       .section-label.cinematic-reveal-label.reveal-visible {
@@ -440,7 +488,9 @@
       .section-heading.cinematic-heading {
         opacity: 0;
         transform: translateY(25px);
-        transition: opacity 600ms var(--eid-ease), transform 600ms var(--eid-ease);
+        transition:
+          opacity 600ms var(--eid-ease),
+          transform 600ms var(--eid-ease);
       }
 
       .section-heading.cinematic-heading.reveal-visible {
@@ -463,7 +513,9 @@
       .cinematic-paragraph {
         opacity: 0;
         transform: translateY(20px);
-        transition: opacity 600ms var(--eid-ease), transform 600ms var(--eid-ease);
+        transition:
+          opacity 600ms var(--eid-ease),
+          transform 600ms var(--eid-ease);
       }
 
       .cinematic-paragraph.reveal-visible {
@@ -497,7 +549,10 @@
       #services .border.border-white\/10.bg-dark-2.p-7 {
         position: relative;
         overflow: hidden;
-        transition: transform 500ms var(--eid-ease), box-shadow 500ms var(--eid-ease), border-color 500ms var(--eid-ease);
+        transition:
+          transform 500ms var(--eid-ease),
+          box-shadow 500ms var(--eid-ease),
+          border-color 500ms var(--eid-ease);
       }
 
       #services .border.border-white\/10.bg-dark-2.p-7:hover {
@@ -509,7 +564,7 @@
         position: absolute;
         top: -20px;
         right: -10px;
-        font-family: 'Playfair Display', serif;
+        font-family: "Playfair Display", serif;
         font-size: 120px;
         line-height: 1;
         color: var(--eid-gold);
@@ -588,7 +643,9 @@
       }
 
       #contact-form span {
-        transition: transform 300ms ease, color 300ms ease;
+        transition:
+          transform 300ms ease,
+          color 300ms ease;
       }
 
       #contact-form span.label-active {
@@ -609,7 +666,12 @@
         top: 0;
         width: 60%;
         height: 100%;
-        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(255, 255, 255, 0.15),
+          transparent
+        );
         transform: skewX(-20deg);
         transition: left 600ms var(--eid-ease);
       }
@@ -652,7 +714,14 @@
         inset: -1px;
         z-index: 0;
         border-radius: inherit;
-        background: conic-gradient(from var(--angle), transparent 85%, var(--eid-gold) 90%, var(--eid-gold-light) 93%, var(--eid-gold) 96%, transparent 100%);
+        background: conic-gradient(
+          from var(--angle),
+          transparent 85%,
+          var(--eid-gold) 90%,
+          var(--eid-gold-light) 93%,
+          var(--eid-gold) 96%,
+          transparent 100%
+        );
         animation: rotateBorder 4s linear infinite;
         pointer-events: none;
       }
@@ -679,7 +748,9 @@
         }
 
         50% {
-          box-shadow: 0 0 30px rgba(201, 168, 76, 0.3), 0 0 60px rgba(201, 168, 76, 0.1);
+          box-shadow:
+            0 0 30px rgba(201, 168, 76, 0.3),
+            0 0 60px rgba(201, 168, 76, 0.1);
         }
       }
 
@@ -744,9 +815,11 @@
         height: 64px !important;
         border-radius: 9999px !important;
         border: 1px solid rgba(201, 168, 76, 0.65);
-        background: #C9A84C !important;
+        background: #c9a84c !important;
         color: #080808;
-        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35), 0 0 26px rgba(201, 168, 76, 0.26);
+        box-shadow:
+          0 18px 45px rgba(0, 0, 0, 0.35),
+          0 0 26px rgba(201, 168, 76, 0.26);
         cursor: pointer;
         opacity: 1 !important;
         visibility: visible !important;
@@ -759,7 +832,7 @@
       }
 
       #chat-toggle:hover {
-        background: #E8C97A !important;
+        background: #e8c97a !important;
         transform: translateY(-2px);
       }
 
@@ -797,7 +870,7 @@
         padding: 1rem !important;
         scroll-behavior: smooth;
         scrollbar-width: thin;
-        scrollbar-color: #C9A84C rgba(255, 255, 255, 0.08);
+        scrollbar-color: #c9a84c rgba(255, 255, 255, 0.08);
       }
 
       #chat-messages::-webkit-scrollbar {
@@ -809,7 +882,7 @@
       }
 
       #chat-messages::-webkit-scrollbar-thumb {
-        background: linear-gradient(to bottom, #C9A84C, #806a32);
+        background: linear-gradient(to bottom, #c9a84c, #806a32);
         border-radius: 999px;
       }
 
@@ -836,7 +909,7 @@
 
       .chat-user {
         margin-left: auto;
-        background: #C9A84C;
+        background: #c9a84c;
         color: #080808;
         font-weight: 600;
       }
@@ -852,8 +925,12 @@
         width: 100%;
         border: 1px solid rgba(201, 168, 76, 0.28);
         border-radius: 12px !important;
-        background: linear-gradient(135deg, rgba(201, 168, 76, 0.14), rgba(255, 255, 255, 0.035)) !important;
-        color: #E8C97A;
+        background: linear-gradient(
+          135deg,
+          rgba(201, 168, 76, 0.14),
+          rgba(255, 255, 255, 0.035)
+        ) !important;
+        color: #e8c97a;
         padding: 11px 12px !important;
         font-size: 10px;
         font-weight: 700;
@@ -866,11 +943,17 @@
       }
 
       .chat-suggestion:hover {
-        border-color: #C9A84C;
-        background: linear-gradient(135deg, rgba(201, 168, 76, 0.28), rgba(255, 255, 255, 0.06)) !important;
+        border-color: #c9a84c;
+        background: linear-gradient(
+          135deg,
+          rgba(201, 168, 76, 0.28),
+          rgba(255, 255, 255, 0.06)
+        ) !important;
         color: #ffffff;
         transform: translateY(-2px);
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22), 0 0 18px rgba(201, 168, 76, 0.12);
+        box-shadow:
+          0 12px 28px rgba(0, 0, 0, 0.22),
+          0 0 18px rgba(201, 168, 76, 0.12);
       }
 
       #chat-input {
@@ -881,7 +964,7 @@
       }
 
       #chat-input:focus {
-        border-color: #C9A84C !important;
+        border-color: #c9a84c !important;
         box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.24);
       }
 
@@ -913,21 +996,57 @@
     </style>
   </head>
   <body class="bg-dark text-white antialiased">
-    <header id="site-header" class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-dark/80 backdrop-blur-xl">
-      <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8" aria-label="Main navigation">
-        <a href="#home" class="font-playfair text-2xl font-bold tracking-wide text-white">
-          EID <span class="text-gold">Properties</span> <span class="text-white/50">& Construction</span>
+    <header
+      id="site-header"
+      class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-dark/80 backdrop-blur-xl"
+    >
+      <nav
+        class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8"
+        aria-label="Main navigation"
+      >
+        <a
+          href="#home"
+          class="font-playfair text-2xl font-bold tracking-wide text-white"
+        >
+          EID <span class="text-gold">Properties</span>
+          <span class="text-white/50">& Construction</span>
         </a>
 
         <div class="flex items-center gap-3">
-          <div class="hidden items-center gap-8 text-xs font-semibold uppercase tracking-widest text-white/70 lg:flex">
-            <a class="transition hover:text-gold" href="#properties" data-i18n="nav.properties">Properties</a>
-            <a class="transition hover:text-gold" href="#about" data-i18n="nav.about">About</a>
-            <a class="transition hover:text-gold" href="#services" data-i18n="nav.services">Services</a>
-            <a class="transition hover:text-gold" href="#contact" data-i18n="nav.contact">Contact</a>
+          <div
+            class="hidden items-center gap-8 text-xs font-semibold uppercase tracking-widest text-white/70 lg:flex"
+          >
+            <a
+              class="transition hover:text-gold"
+              href="#properties"
+              data-i18n="nav.properties"
+              >Properties</a
+            >
+            <a
+              class="transition hover:text-gold"
+              href="#about"
+              data-i18n="nav.about"
+              >About</a
+            >
+            <a
+              class="transition hover:text-gold"
+              href="#services"
+              data-i18n="nav.services"
+              >Services</a
+            >
+            <a
+              class="transition hover:text-gold"
+              href="#contact"
+              data-i18n="nav.contact"
+              >Contact</a
+            >
           </div>
-          <button id="theme-toggle" class="nav-toggle-btn" type="button">Dark / Light</button>
-          <button id="language-toggle" class="nav-toggle-btn" type="button">AR / EN</button>
+          <button id="theme-toggle" class="nav-toggle-btn" type="button">
+            Dark / Light
+          </button>
+          <button id="language-toggle" class="nav-toggle-btn" type="button">
+            AR / EN
+          </button>
           <button
             id="menu-toggle"
             class="flex h-11 w-11 items-center justify-center border border-white/15 text-gold transition hover:border-gold lg:hidden"
@@ -937,56 +1056,123 @@
             aria-controls="mobile-menu"
           >
             <span class="relative h-4 w-5">
-              <span class="menu-line absolute left-0 top-0 h-0.5 w-5 bg-current transition"></span>
-              <span class="menu-line absolute left-0 top-1.5 h-0.5 w-5 bg-current transition"></span>
-              <span class="menu-line absolute left-0 top-3 h-0.5 w-5 bg-current transition"></span>
+              <span
+                class="menu-line absolute left-0 top-0 h-0.5 w-5 bg-current transition"
+              ></span>
+              <span
+                class="menu-line absolute left-0 top-1.5 h-0.5 w-5 bg-current transition"
+              ></span>
+              <span
+                class="menu-line absolute left-0 top-3 h-0.5 w-5 bg-current transition"
+              ></span>
             </span>
           </button>
         </div>
       </nav>
 
-      <div id="mobile-menu" class="hidden border-t border-white/10 bg-dark-2 px-5 py-5 lg:hidden">
-        <div class="flex flex-col gap-4 text-sm font-semibold uppercase tracking-widest text-white/75">
-          <a class="mobile-link transition hover:text-gold" href="#properties" data-i18n="nav.properties">Properties</a>
-          <a class="mobile-link transition hover:text-gold" href="#about" data-i18n="nav.about">About</a>
-          <a class="mobile-link transition hover:text-gold" href="#services" data-i18n="nav.services">Services</a>
-          <a class="mobile-link transition hover:text-gold" href="#contact" data-i18n="nav.contact">Contact</a>
+      <div
+        id="mobile-menu"
+        class="hidden border-t border-white/10 bg-dark-2 px-5 py-5 lg:hidden"
+      >
+        <div
+          class="flex flex-col gap-4 text-sm font-semibold uppercase tracking-widest text-white/75"
+        >
+          <a
+            class="mobile-link transition hover:text-gold"
+            href="#properties"
+            data-i18n="nav.properties"
+            >Properties</a
+          >
+          <a
+            class="mobile-link transition hover:text-gold"
+            href="#about"
+            data-i18n="nav.about"
+            >About</a
+          >
+          <a
+            class="mobile-link transition hover:text-gold"
+            href="#services"
+            data-i18n="nav.services"
+            >Services</a
+          >
+          <a
+            class="mobile-link transition hover:text-gold"
+            href="#contact"
+            data-i18n="nav.contact"
+            >Contact</a
+          >
         </div>
       </div>
     </header>
 
     <main>
-      <section id="home" class="relative flex min-h-screen items-center overflow-hidden pt-24">
+      <section
+        id="home"
+        class="relative flex min-h-screen items-center overflow-hidden pt-24"
+      >
         <div class="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=2200&q=100"
             alt="Luxury modern villa interior with warm architectural lighting"
             class="h-full w-full object-cover opacity-45"
           />
-          <div class="hero-overlay absolute inset-0 bg-gradient-to-r from-dark via-dark/85 to-dark/25"></div>
+          <div
+            class="hero-overlay absolute inset-0 bg-gradient-to-r from-dark via-dark/85 to-dark/25"
+          ></div>
         </div>
 
-        <div class="relative mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
+        <div
+          class="relative mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:px-8"
+        >
           <div class="max-w-3xl">
-            <p class="section-label" data-i18n="hero.label">EID Properties & Construction</p>
-            <h1 class="font-playfair text-5xl font-bold leading-tight text-white md:text-7xl" data-i18n="hero.title">
+            <p class="section-label" data-i18n="hero.label">
+              EID Properties & Construction
+            </p>
+            <h1
+              class="font-playfair text-5xl font-bold leading-tight text-white md:text-7xl"
+              data-i18n="hero.title"
+            >
               Where Trust Meets Value
             </h1>
-            <p class="mt-6 max-w-2xl text-base leading-8 text-white/75 md:text-lg" data-i18n="hero.text">
-              A luxury real estate and construction company crafting premium residences, investment properties, and timeless developments across Lebanon.
+            <p
+              class="mt-6 max-w-2xl text-base leading-8 text-white/75 md:text-lg"
+              data-i18n="hero.text"
+            >
+              A luxury real estate and construction company crafting premium
+              residences, investment properties, and timeless developments
+              across Lebanon.
             </p>
             <div class="mt-10 flex flex-col gap-4 sm:flex-row">
-              <a href="#properties" class="btn-gold text-center" data-i18n="hero.propertiesCta">Explore Signature Properties</a>
-              <a href="#contact" class="btn-outline text-center" data-i18n="hero.contactCta">Private Consultation</a>
+              <a
+                href="#properties"
+                class="btn-gold text-center"
+                data-i18n="hero.propertiesCta"
+                >Explore Signature Properties</a
+              >
+              <a
+                href="#contact"
+                class="btn-outline text-center"
+                data-i18n="hero.contactCta"
+                >Private Consultation</a
+              >
             </div>
           </div>
 
           <div class="hidden items-end justify-end lg:flex">
             <div class="border border-gold/40 bg-dark/70 p-8 backdrop-blur-md">
-              <p class="text-xs font-semibold uppercase tracking-widest text-gold" data-i18n="hero.established">Established</p>
+              <p
+                class="text-xs font-semibold uppercase tracking-widest text-gold"
+                data-i18n="hero.established"
+              >
+                Established
+              </p>
               <p class="mt-3 font-playfair text-6xl font-bold">1996</p>
-              <p class="mt-4 max-w-xs text-sm leading-7 text-white/65" data-i18n="hero.establishedText">
-                 Three decades of trusted real estate expertise, premium construction quality, and client-focused property guidance.
+              <p
+                class="mt-4 max-w-xs text-sm leading-7 text-white/65"
+                data-i18n="hero.establishedText"
+              >
+                Three decades of trusted real estate expertise, premium
+                construction quality, and client-focused property guidance.
               </p>
             </div>
           </div>
@@ -994,22 +1180,32 @@
       </section>
 
       <section class="border-y border-white/10 bg-dark-2 py-10">
-        <div class="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-5 text-center md:grid-cols-4 lg:px-8">
+        <div
+          class="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-5 text-center md:grid-cols-4 lg:px-8"
+        >
           <div class="p-4">
             <p class="font-playfair text-4xl font-bold text-gold">1996</p>
-            <p class="mt-2 text-xs uppercase tracking-widest text-white/60">Since</p>
+            <p class="mt-2 text-xs uppercase tracking-widest text-white/60">
+              Since
+            </p>
           </div>
           <div class="p-4">
             <p class="font-playfair text-4xl font-bold text-gold">7+</p>
-            <p class="mt-2 text-xs uppercase tracking-widest text-white/60">Projects</p>
+            <p class="mt-2 text-xs uppercase tracking-widest text-white/60">
+              Projects
+            </p>
           </div>
           <div class="p-4">
             <p class="font-playfair text-4xl font-bold text-gold">1000+</p>
-            <p class="mt-2 text-xs uppercase tracking-widest text-white/60">Clients</p>
+            <p class="mt-2 text-xs uppercase tracking-widest text-white/60">
+              Clients
+            </p>
           </div>
           <div class="p-4">
             <p class="font-playfair text-4xl font-bold text-gold">30+</p>
-            <p class="mt-2 text-xs uppercase tracking-widest text-white/60">Years</p>
+            <p class="mt-2 text-xs uppercase tracking-widest text-white/60">
+              Years
+            </p>
           </div>
         </div>
       </section>
@@ -1017,15 +1213,28 @@
       <section id="properties" class="bg-dark px-5 py-24 lg:px-8">
         <div class="mx-auto max-w-7xl">
           <div class="mb-12 max-w-3xl">
-            <p class="section-label" data-i18n="properties.label">Featured Properties</p>
-            <h2 class="section-heading" data-i18n="properties.title">Signature properties crafted for prestige, comfort, and long-term value.</h2>
-            <p class="text-white/65" data-i18n="properties.text">Explore elegant homes and investment-ready spaces shaped by location, craftsmanship, and a sharp eye for detail.</p>
+            <p class="section-label" data-i18n="properties.label">
+              Featured Properties
+            </p>
+            <h2 class="section-heading" data-i18n="properties.title">
+              Signature properties crafted for prestige, comfort, and long-term
+              value.
+            </h2>
+            <p class="text-white/65" data-i18n="properties.text">
+              Explore elegant homes and investment-ready spaces shaped by
+              location, craftsmanship, and a sharp eye for detail.
+            </p>
           </div>
 
-          <div class="mb-10 border border-gold/25 bg-dark-2/80 p-5 shadow-2xl shadow-black/20 backdrop-blur-xl md:p-7">
+          <div
+            class="mb-10 border border-gold/25 bg-dark-2/80 p-5 shadow-2xl shadow-black/20 backdrop-blur-xl md:p-7"
+          >
             <div class="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
               <label class="block">
-                <span class="mb-3 block text-xs font-semibold uppercase tracking-widest text-gold">Region</span>
+                <span
+                  class="mb-3 block text-xs font-semibold uppercase tracking-widest text-gold"
+                  >Region</span
+                >
                 <select id="region-filter" class="filter-control">
                   <option value="all">All Regions</option>
                   <option value="Jounieh District">Jounieh District</option>
@@ -1039,127 +1248,318 @@
 
               <div class="grid gap-3 md:grid-cols-[0.85fr_1.15fr]">
                 <label class="block">
-                  <span class="mb-3 block text-xs font-semibold uppercase tracking-widest text-gold">Search Location</span>
-                  <input id="location-search" class="filter-control" type="search" placeholder="Search Kaslik, Rabieh, Beirut..." autocomplete="off" />
+                  <span
+                    class="mb-3 block text-xs font-semibold uppercase tracking-widest text-gold"
+                    >Search Location</span
+                  >
+                  <input
+                    id="location-search"
+                    class="filter-control"
+                    type="search"
+                    placeholder="Search Kaslik, Rabieh, Beirut..."
+                    autocomplete="off"
+                  />
                 </label>
                 <label class="block">
-                  <span class="mb-3 block text-xs font-semibold uppercase tracking-widest text-gold">Location</span>
+                  <span
+                    class="mb-3 block text-xs font-semibold uppercase tracking-widest text-gold"
+                    >Location</span
+                  >
                   <select id="location-filter" class="filter-control"></select>
                 </label>
               </div>
             </div>
           </div>
 
-          <nav class="mb-8 flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-widest text-white/55" aria-label="Property breadcrumbs">
+          <nav
+            class="mb-8 flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-widest text-white/55"
+            aria-label="Property breadcrumbs"
+          >
             <a href="#home" class="transition hover:text-gold">Home</a>
             <span class="text-gold">/</span>
-            <a href="#properties" class="transition hover:text-gold">Properties</a>
+            <a href="#properties" class="transition hover:text-gold"
+              >Properties</a
+            >
             <span class="text-gold">/</span>
             <span id="breadcrumb-region">All Regions</span>
             <span class="text-gold">/</span>
             <span id="breadcrumb-location">All Locations</span>
           </nav>
 
-          <div id="properties-grid" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <article class="property-card featured-property-card group overflow-hidden border border-gold bg-dark-2 shadow-2xl shadow-black/30" data-region="Metn" data-location="Dbayeh">
+          <div
+            id="properties-grid"
+            class="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          >
+            <article
+              class="property-card featured-property-card group overflow-hidden border border-gold bg-dark-2 shadow-2xl shadow-black/30"
+              data-region="Metn"
+              data-location="Dbayeh"
+            >
               <div class="relative overflow-hidden">
-                <img src="./src/images/properties/marina-waterfront-residence.jpg" alt="Marina Waterfront Residence overlooking the waterfront in Dbayeh" class="h-72 w-full object-cover transition duration-500 group-hover:scale-105" />
+                <img
+                  src="./src/images/properties/marina-waterfront-residence.jpg"
+                  alt="Marina Waterfront Residence overlooking the waterfront in Dbayeh"
+                  class="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
+                />
                 <div class="absolute left-5 top-5 flex flex-wrap gap-3">
-                  <span class="border border-gold bg-dark/85 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-gold backdrop-blur-md">WATERFRONT COLLECTION</span>
-                  <span class="bg-gold px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-dark">FEATURED</span>
+                  <span
+                    class="border border-gold bg-dark/85 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-gold backdrop-blur-md"
+                    >WATERFRONT COLLECTION</span
+                  >
+                  <span
+                    class="bg-gold px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-dark"
+                    >FEATURED</span
+                  >
                 </div>
               </div>
               <div class="p-6">
-                <p class="text-xs uppercase tracking-widest text-gold">Metn / Waterfront City, Dbayeh</p>
-                <h3 class="mt-3 text-2xl font-bold">Marina Waterfront Residence</h3>
-                <div class="mt-5 grid grid-cols-2 gap-3 text-xs uppercase tracking-widest text-white/55">
+                <p class="text-xs uppercase tracking-widest text-gold">
+                  Metn / Waterfront City, Dbayeh
+                </p>
+                <h3 class="mt-3 text-2xl font-bold">
+                  Marina Waterfront Residence
+                </h3>
+                <div
+                  class="mt-5 grid grid-cols-2 gap-3 text-xs uppercase tracking-widest text-white/55"
+                >
                   <p><span class="block text-gold">Region</span> Metn</p>
-                  <p><span class="block text-gold">Location</span> Waterfront City, Dbayeh</p>
-                  <p><span class="block text-gold">Category</span> Apartments</p>
+                  <p>
+                    <span class="block text-gold">Location</span> Waterfront
+                    City, Dbayeh
+                  </p>
+                  <p>
+                    <span class="block text-gold">Category</span> Apartments
+                  </p>
                   <p><span class="block text-gold">Status</span> For Sale</p>
                 </div>
-                <p class="mt-5 text-gold font-semibold"><span class="text-xs uppercase tracking-widest text-white/55">Price</span><br />$1,600,000</p>
-                <a class="whatsapp-btn mt-5 inline-flex" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Marina%20Waterfront%20Residence" target="_blank" rel="noopener" data-i18n="properties.whatsapp">Contact on WhatsApp</a>
+                <p class="mt-5 text-gold font-semibold">
+                  <span class="text-xs uppercase tracking-widest text-white/55"
+                    >Price</span
+                  ><br />$1,600,000
+                </p>
+                <a
+                  class="whatsapp-btn mt-5 inline-flex"
+                  href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Marina%20Waterfront%20Residence"
+                  target="_blank"
+                  rel="noopener"
+                  data-i18n="properties.whatsapp"
+                  >Contact on WhatsApp</a
+                >
               </div>
             </article>
 
-            <article class="property-card group overflow-hidden border border-white/10 bg-dark-2" data-region="Jounieh District" data-location="Kaslik">
-              <img src="./src/images/properties/kaslik-altavista-residence.jpg" alt="Kaslik Altavista Residence luxury coastal apartment exterior" class="h-72 w-full object-cover transition duration-500 group-hover:scale-105" />
+            <article
+              class="property-card group overflow-hidden border border-white/10 bg-dark-2"
+              data-region="Jounieh District"
+              data-location="Kaslik"
+            >
+              <img
+                src="./src/images/properties/kaslik-altavista-residence.jpg"
+                alt="Kaslik Altavista Residence luxury coastal apartment exterior"
+                class="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
+              />
               <div class="p-6">
-                <p class="text-xs uppercase tracking-widest text-gold">Jounieh District / Kaslik</p>
-                <h3 class="mt-3 text-2xl font-bold">Kaslik Altavista Residence</h3>
-                <div class="mt-5 grid grid-cols-2 gap-3 text-xs uppercase tracking-widest text-white/55">
-                  <p><span class="block text-gold">Region</span> Jounieh District</p>
+                <p class="text-xs uppercase tracking-widest text-gold">
+                  Jounieh District / Kaslik
+                </p>
+                <h3 class="mt-3 text-2xl font-bold">
+                  Kaslik Altavista Residence
+                </h3>
+                <div
+                  class="mt-5 grid grid-cols-2 gap-3 text-xs uppercase tracking-widest text-white/55"
+                >
+                  <p>
+                    <span class="block text-gold">Region</span> Jounieh District
+                  </p>
                   <p><span class="block text-gold">Location</span> Kaslik</p>
-                  <p><span class="block text-gold">Property Type</span> Apartment</p>
+                  <p>
+                    <span class="block text-gold">Property Type</span> Apartment
+                  </p>
                   <p><span class="block text-gold">Status</span> For Sale</p>
                 </div>
-                <p class="mt-5 text-gold font-semibold"><span class="text-xs uppercase tracking-widest text-white/55">Price</span><br />$250,000</p>
-                <a class="whatsapp-btn mt-5 inline-flex" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Kaslik%20Altavista%20Residence" target="_blank" rel="noopener" data-i18n="properties.whatsapp">Contact on WhatsApp</a>
+                <p class="mt-5 text-gold font-semibold">
+                  <span class="text-xs uppercase tracking-widest text-white/55"
+                    >Price</span
+                  ><br />$250,000
+                </p>
+                <a
+                  class="whatsapp-btn mt-5 inline-flex"
+                  href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Kaslik%20Altavista%20Residence"
+                  target="_blank"
+                  rel="noopener"
+                  data-i18n="properties.whatsapp"
+                  >Contact on WhatsApp</a
+                >
               </div>
             </article>
 
-            <article class="property-card group overflow-hidden border border-white/10 bg-dark-2" data-region="Keserwan" data-location="Adma">
-              <img src="./src/images/properties/adma-hillside-villa.jpg" alt="Dark modern Adma hillside villa with pool and warm lighting" class="h-72 w-full object-cover transition duration-500 group-hover:scale-105" />
+            <article
+              class="property-card group overflow-hidden border border-white/10 bg-dark-2"
+              data-region="Keserwan"
+              data-location="Adma"
+            >
+              <img
+                src="./src/images/properties/adma-hillside-villa.jpg"
+                alt="Dark modern Adma hillside villa with pool and warm lighting"
+                class="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
+              />
               <div class="p-6">
-                <p class="text-xs uppercase tracking-widest text-gold">Keserwan / Adma</p>
+                <p class="text-xs uppercase tracking-widest text-gold">
+                  Keserwan / Adma
+                </p>
                 <h3 class="mt-3 text-2xl font-bold">Adma Hillside Villa</h3>
-                <div class="mt-5 grid grid-cols-2 gap-3 text-xs uppercase tracking-widest text-white/55">
+                <div
+                  class="mt-5 grid grid-cols-2 gap-3 text-xs uppercase tracking-widest text-white/55"
+                >
                   <p><span class="block text-gold">Region</span> Keserwan</p>
                   <p><span class="block text-gold">Location</span> Adma</p>
-                  <p><span class="block text-gold">Property Type</span> Villa</p>
+                  <p>
+                    <span class="block text-gold">Property Type</span> Villa
+                  </p>
                   <p><span class="block text-gold">Status</span> For Sale</p>
                 </div>
-                <p class="mt-5 text-gold font-semibold"><span class="text-xs uppercase tracking-widest text-white/55">Price</span><br />$900,000</p>
-                <a class="whatsapp-btn mt-5 inline-flex" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Adma%20Hillside%20Villa" target="_blank" rel="noopener" data-i18n="properties.whatsapp">Contact on WhatsApp</a>
+                <p class="mt-5 text-gold font-semibold">
+                  <span class="text-xs uppercase tracking-widest text-white/55"
+                    >Price</span
+                  ><br />$900,000
+                </p>
+                <a
+                  class="whatsapp-btn mt-5 inline-flex"
+                  href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Adma%20Hillside%20Villa"
+                  target="_blank"
+                  rel="noopener"
+                  data-i18n="properties.whatsapp"
+                  >Contact on WhatsApp</a
+                >
               </div>
             </article>
 
-            <article class="property-card group overflow-hidden border border-white/10 bg-dark-2" data-region="Jounieh District" data-location="Kfarhbab">
-              <img src="./src/images/properties/kfarhbab-grand-residence.jpg" alt="Kfarhbab Grand Residence with columns and landscaped courtyard" class="h-72 w-full object-cover transition duration-500 group-hover:scale-105" />
+            <article
+              class="property-card group overflow-hidden border border-white/10 bg-dark-2"
+              data-region="Jounieh District"
+              data-location="Kfarhbab"
+            >
+              <img
+                src="./src/images/properties/kfarhbab-grand-residence.jpg"
+                alt="Kfarhbab Grand Residence with columns and landscaped courtyard"
+                class="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
+              />
               <div class="p-6">
-                <p class="text-xs uppercase tracking-widest text-gold">Jounieh District / Kfarhbab</p>
-                <h3 class="mt-3 text-2xl font-bold">Kfarhbab Grand Residence</h3>
-                <div class="mt-5 grid grid-cols-2 gap-3 text-xs uppercase tracking-widest text-white/55">
-                  <p><span class="block text-gold">Region</span> Jounieh District</p>
+                <p class="text-xs uppercase tracking-widest text-gold">
+                  Jounieh District / Kfarhbab
+                </p>
+                <h3 class="mt-3 text-2xl font-bold">
+                  Kfarhbab Grand Residence
+                </h3>
+                <div
+                  class="mt-5 grid grid-cols-2 gap-3 text-xs uppercase tracking-widest text-white/55"
+                >
+                  <p>
+                    <span class="block text-gold">Region</span> Jounieh District
+                  </p>
                   <p><span class="block text-gold">Location</span> Kfarhbab</p>
-                  <p><span class="block text-gold">Property Type</span> Residence</p>
+                  <p>
+                    <span class="block text-gold">Property Type</span> Residence
+                  </p>
                   <p><span class="block text-gold">Status</span> For Sale</p>
                 </div>
-                <p class="mt-5 text-gold font-semibold"><span class="text-xs uppercase tracking-widest text-white/55">Price</span><br />$750,000</p>
-                <a class="whatsapp-btn mt-5 inline-flex" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Kfarhbab%20Grand%20Residence" target="_blank" rel="noopener" data-i18n="properties.whatsapp">Contact on WhatsApp</a>
+                <p class="mt-5 text-gold font-semibold">
+                  <span class="text-xs uppercase tracking-widest text-white/55"
+                    >Price</span
+                  ><br />$750,000
+                </p>
+                <a
+                  class="whatsapp-btn mt-5 inline-flex"
+                  href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Kfarhbab%20Grand%20Residence"
+                  target="_blank"
+                  rel="noopener"
+                  data-i18n="properties.whatsapp"
+                  >Contact on WhatsApp</a
+                >
               </div>
             </article>
 
-            <article class="property-card group overflow-hidden border border-white/10 bg-dark-2" data-region="Keserwan" data-location="Ghosta">
-              <img src="./src/images/properties/ghosta-contemporary-villa.jpg" alt="Ghosta Contemporary Villa with stone facade and glass balconies" class="h-72 w-full object-cover transition duration-500 group-hover:scale-105" />
+            <article
+              class="property-card group overflow-hidden border border-white/10 bg-dark-2"
+              data-region="Keserwan"
+              data-location="Ghosta"
+            >
+              <img
+                src="./src/images/properties/ghosta-contemporary-villa.jpg"
+                alt="Ghosta Contemporary Villa with stone facade and glass balconies"
+                class="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
+              />
               <div class="p-6">
-                <p class="text-xs uppercase tracking-widest text-gold">Keserwan / Ghosta</p>
-                <h3 class="mt-3 text-2xl font-bold">Ghosta Contemporary Villa</h3>
-                <div class="mt-5 grid grid-cols-2 gap-3 text-xs uppercase tracking-widest text-white/55">
+                <p class="text-xs uppercase tracking-widest text-gold">
+                  Keserwan / Ghosta
+                </p>
+                <h3 class="mt-3 text-2xl font-bold">
+                  Ghosta Contemporary Villa
+                </h3>
+                <div
+                  class="mt-5 grid grid-cols-2 gap-3 text-xs uppercase tracking-widest text-white/55"
+                >
                   <p><span class="block text-gold">Region</span> Keserwan</p>
                   <p><span class="block text-gold">Location</span> Ghosta</p>
-                  <p><span class="block text-gold">Property Type</span> Villa</p>
+                  <p>
+                    <span class="block text-gold">Property Type</span> Villa
+                  </p>
                   <p><span class="block text-gold">Status</span> For Sale</p>
                 </div>
-                <p class="mt-5 text-gold font-semibold"><span class="text-xs uppercase tracking-widest text-white/55">Price</span><br />Contact for Price</p>
-                <a class="whatsapp-btn mt-5 inline-flex" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Ghosta%20Contemporary%20Villa" target="_blank" rel="noopener" data-i18n="properties.whatsapp">Contact on WhatsApp</a>
+                <p class="mt-5 text-gold font-semibold">
+                  <span class="text-xs uppercase tracking-widest text-white/55"
+                    >Price</span
+                  ><br />Contact for Price
+                </p>
+                <a
+                  class="whatsapp-btn mt-5 inline-flex"
+                  href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Ghosta%20Contemporary%20Villa"
+                  target="_blank"
+                  rel="noopener"
+                  data-i18n="properties.whatsapp"
+                  >Contact on WhatsApp</a
+                >
               </div>
             </article>
 
-            <article class="property-card group overflow-hidden border border-white/10 bg-dark-2" data-region="Keserwan" data-location="Kleiat">
-              <img src="./src/images/properties/kleiat-stone-villa.jpg" alt="Kleiat Stone Villa with traditional Lebanese stone and pool" class="h-72 w-full object-cover transition duration-500 group-hover:scale-105" />
+            <article
+              class="property-card group overflow-hidden border border-white/10 bg-dark-2"
+              data-region="Keserwan"
+              data-location="Kleiat"
+            >
+              <img
+                src="./src/images/properties/kleiat-stone-villa.jpg"
+                alt="Kleiat Stone Villa with traditional Lebanese stone and pool"
+                class="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
+              />
               <div class="p-6">
-                <p class="text-xs uppercase tracking-widest text-gold">Keserwan / Kleiat</p>
+                <p class="text-xs uppercase tracking-widest text-gold">
+                  Keserwan / Kleiat
+                </p>
                 <h3 class="mt-3 text-2xl font-bold">Kleiat Stone Villa</h3>
-                <div class="mt-5 grid grid-cols-2 gap-3 text-xs uppercase tracking-widest text-white/55">
+                <div
+                  class="mt-5 grid grid-cols-2 gap-3 text-xs uppercase tracking-widest text-white/55"
+                >
                   <p><span class="block text-gold">Region</span> Keserwan</p>
                   <p><span class="block text-gold">Location</span> Kleiat</p>
-                  <p><span class="block text-gold">Property Type</span> Villa</p>
+                  <p>
+                    <span class="block text-gold">Property Type</span> Villa
+                  </p>
                   <p><span class="block text-gold">Status</span> For Sale</p>
                 </div>
-                <p class="mt-5 text-gold font-semibold"><span class="text-xs uppercase tracking-widest text-white/55">Price</span><br />Contact for Price</p>
-                <a class="whatsapp-btn mt-5 inline-flex" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Kleiat%20Stone%20Villa" target="_blank" rel="noopener" data-i18n="properties.whatsapp">Contact on WhatsApp</a>
+                <p class="mt-5 text-gold font-semibold">
+                  <span class="text-xs uppercase tracking-widest text-white/55"
+                    >Price</span
+                  ><br />Contact for Price
+                </p>
+                <a
+                  class="whatsapp-btn mt-5 inline-flex"
+                  href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Kleiat%20Stone%20Villa"
+                  target="_blank"
+                  rel="noopener"
+                  data-i18n="properties.whatsapp"
+                  >Contact on WhatsApp</a
+                >
               </div>
             </article>
           </div>
@@ -1167,13 +1567,35 @@
           <div class="mt-16 flex justify-center" id="view-all-wrapper">
             <button id="view-all-btn" type="button">
               <span id="view-all-label">View All Properties</span>
-              <span id="view-all-arrow" style="margin-left:12px; display:inline-block; transition: transform 400ms cubic-bezier(0.16,1,0.3,1);">&darr;</span>
+              <span
+                id="view-all-arrow"
+                style="
+                  margin-left: 12px;
+                  display: inline-block;
+                  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+                "
+                >&darr;</span
+              >
             </button>
           </div>
 
-          <div id="all-properties-panel" style="max-height:0; overflow:hidden; opacity:0; transition: max-height 900ms cubic-bezier(0.16,1,0.3,1), opacity 600ms ease; margin-top:0;">
+          <div
+            id="all-properties-panel"
+            style="
+              max-height: 0;
+              overflow: hidden;
+              opacity: 0;
+              transition:
+                max-height 900ms cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 600ms ease;
+              margin-top: 0;
+            "
+          >
             <div class="all-prop-row" data-index="0">
-              <img src="./src/images/properties/marina-waterfront-residence.jpg" alt="Marina Waterfront Residence" />
+              <img
+                src="./src/images/properties/marina-waterfront-residence.jpg"
+                alt="Marina Waterfront Residence"
+              />
               <div class="all-prop-details">
                 <p class="all-prop-region">Metn / Waterfront City, Dbayeh</p>
                 <h3 class="all-prop-title">Marina Waterfront Residence</h3>
@@ -1185,11 +1607,20 @@
                 </div>
                 <p class="all-prop-price">$1,600,000</p>
               </div>
-              <a class="all-prop-whatsapp" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Marina%20Waterfront%20Residence" target="_blank" rel="noopener">Contact on WhatsApp</a>
+              <a
+                class="all-prop-whatsapp"
+                href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Marina%20Waterfront%20Residence"
+                target="_blank"
+                rel="noopener"
+                >Contact on WhatsApp</a
+              >
             </div>
 
             <div class="all-prop-row" data-index="1">
-              <img src="./src/images/properties/kaslik-altavista-residence.jpg" alt="Kaslik Altavista Residence" />
+              <img
+                src="./src/images/properties/kaslik-altavista-residence.jpg"
+                alt="Kaslik Altavista Residence"
+              />
               <div class="all-prop-details">
                 <p class="all-prop-region">Jounieh District / Kaslik</p>
                 <h3 class="all-prop-title">Kaslik Altavista Residence</h3>
@@ -1201,11 +1632,20 @@
                 </div>
                 <p class="all-prop-price">$250,000</p>
               </div>
-              <a class="all-prop-whatsapp" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Kaslik%20Altavista%20Residence" target="_blank" rel="noopener">Contact on WhatsApp</a>
+              <a
+                class="all-prop-whatsapp"
+                href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Kaslik%20Altavista%20Residence"
+                target="_blank"
+                rel="noopener"
+                >Contact on WhatsApp</a
+              >
             </div>
 
             <div class="all-prop-row" data-index="2">
-              <img src="./src/images/properties/adma-hillside-villa.jpg" alt="Adma Hillside Villa" />
+              <img
+                src="./src/images/properties/adma-hillside-villa.jpg"
+                alt="Adma Hillside Villa"
+              />
               <div class="all-prop-details">
                 <p class="all-prop-region">Keserwan / Adma</p>
                 <h3 class="all-prop-title">Adma Hillside Villa</h3>
@@ -1217,11 +1657,20 @@
                 </div>
                 <p class="all-prop-price">$900,000</p>
               </div>
-              <a class="all-prop-whatsapp" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Adma%20Hillside%20Villa" target="_blank" rel="noopener">Contact on WhatsApp</a>
+              <a
+                class="all-prop-whatsapp"
+                href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Adma%20Hillside%20Villa"
+                target="_blank"
+                rel="noopener"
+                >Contact on WhatsApp</a
+              >
             </div>
 
             <div class="all-prop-row" data-index="3">
-              <img src="./src/images/properties/kfarhbab-grand-residence.jpg" alt="Kfarhbab Grand Residence" />
+              <img
+                src="./src/images/properties/kfarhbab-grand-residence.jpg"
+                alt="Kfarhbab Grand Residence"
+              />
               <div class="all-prop-details">
                 <p class="all-prop-region">Jounieh District / Kfarhbab</p>
                 <h3 class="all-prop-title">Kfarhbab Grand Residence</h3>
@@ -1233,11 +1682,20 @@
                 </div>
                 <p class="all-prop-price">$750,000</p>
               </div>
-              <a class="all-prop-whatsapp" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Kfarhbab%20Grand%20Residence" target="_blank" rel="noopener">Contact on WhatsApp</a>
+              <a
+                class="all-prop-whatsapp"
+                href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Kfarhbab%20Grand%20Residence"
+                target="_blank"
+                rel="noopener"
+                >Contact on WhatsApp</a
+              >
             </div>
 
             <div class="all-prop-row" data-index="4">
-              <img src="./src/images/properties/ghosta-contemporary-villa.jpg" alt="Ghosta Contemporary Villa" />
+              <img
+                src="./src/images/properties/ghosta-contemporary-villa.jpg"
+                alt="Ghosta Contemporary Villa"
+              />
               <div class="all-prop-details">
                 <p class="all-prop-region">Keserwan / Ghosta</p>
                 <h3 class="all-prop-title">Ghosta Contemporary Villa</h3>
@@ -1249,11 +1707,20 @@
                 </div>
                 <p class="all-prop-price">Contact for Price</p>
               </div>
-              <a class="all-prop-whatsapp" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Ghosta%20Contemporary%20Villa" target="_blank" rel="noopener">Contact on WhatsApp</a>
+              <a
+                class="all-prop-whatsapp"
+                href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Ghosta%20Contemporary%20Villa"
+                target="_blank"
+                rel="noopener"
+                >Contact on WhatsApp</a
+              >
             </div>
 
             <div class="all-prop-row" data-index="5">
-              <img src="./src/images/properties/kleiat-stone-villa.jpg" alt="Kleiat Stone Villa" />
+              <img
+                src="./src/images/properties/kleiat-stone-villa.jpg"
+                alt="Kleiat Stone Villa"
+              />
               <div class="all-prop-details">
                 <p class="all-prop-region">Keserwan / Kleiat</p>
                 <h3 class="all-prop-title">Kleiat Stone Villa</h3>
@@ -1265,27 +1732,51 @@
                 </div>
                 <p class="all-prop-price">Contact for Price</p>
               </div>
-              <a class="all-prop-whatsapp" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Kleiat%20Stone%20Villa" target="_blank" rel="noopener">Contact on WhatsApp</a>
+              <a
+                class="all-prop-whatsapp"
+                href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Kleiat%20Stone%20Villa"
+                target="_blank"
+                rel="noopener"
+                >Contact on WhatsApp</a
+              >
             </div>
           </div>
 
-          <p id="no-properties" class="mt-10 hidden border border-white/10 bg-dark-2 p-6 text-center text-sm uppercase tracking-widest text-white/55">No properties match this location.</p>
+          <p
+            id="no-properties"
+            class="mt-10 hidden border border-white/10 bg-dark-2 p-6 text-center text-sm uppercase tracking-widest text-white/55"
+          >
+            No properties match this location.
+          </p>
         </div>
       </section>
 
       <section id="about" class="bg-dark-2 px-5 py-24 lg:px-8">
-        <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:items-center">
+        <div
+          class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:items-center"
+        >
           <div>
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" alt="Luxury commercial architecture facade" class="h-[520px] w-full object-cover" />
+            <img
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"
+              alt="Luxury commercial architecture facade"
+              class="h-[520px] w-full object-cover"
+            />
           </div>
           <div>
             <p class="section-label" data-i18n="about.label">About Us</p>
-            <h2 class="section-heading" data-i18n="about.title">Built on confidence, delivered with precision.</h2>
+            <h2 class="section-heading" data-i18n="about.title">
+              Built on confidence, delivered with precision.
+            </h2>
             <p class="leading-8 text-white/70" data-i18n="about.textOne">
-              Since 1996, EID Properties & Construction has connected clients with exceptional real estate opportunities while managing construction standards with clarity, accountability, and refined taste.
+              Since 1996, EID Properties & Construction has connected clients
+              with exceptional real estate opportunities while managing
+              construction standards with clarity, accountability, and refined
+              taste.
             </p>
             <p class="mt-5 leading-8 text-white/70" data-i18n="about.textTwo">
-              Our work is guided by trust, transparent advisory, and a commitment to properties that hold practical and emotional value over time.
+              Our work is guided by trust, transparent advisory, and a
+              commitment to properties that hold practical and emotional value
+              over time.
             </p>
           </div>
         </div>
@@ -1295,29 +1786,72 @@
         <div class="mx-auto max-w-7xl">
           <div class="mb-12 max-w-3xl">
             <p class="section-label" data-i18n="services.label">Services</p>
-            <h2 class="section-heading" data-i18n="services.title">Real estate expertise from vision to handover.</h2>
+            <h2 class="section-heading" data-i18n="services.title">
+              Real estate expertise from vision to handover.
+            </h2>
           </div>
 
           <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             <div class="border border-white/10 bg-dark-2 p-7">
               <p class="mb-5 text-3xl text-gold">01</p>
-              <h3 class="text-xl font-bold" data-i18n="services.salesTitle">Luxury Property Sales</h3>
-              <p class="mt-4 text-sm leading-7 text-white/60" data-i18n="services.salesText">Curated residential and investment listings matched to client goals.</p>
+              <h3 class="text-xl font-bold" data-i18n="services.salesTitle">
+                Luxury Property Sales
+              </h3>
+              <p
+                class="mt-4 text-sm leading-7 text-white/60"
+                data-i18n="services.salesText"
+              >
+                Curated residential and investment listings matched to client
+                goals.
+              </p>
             </div>
             <div class="border border-white/10 bg-dark-2 p-7">
               <p class="mb-5 text-3xl text-gold">02</p>
-              <h3 class="text-xl font-bold" data-i18n="services.constructionTitle">Premium Construction</h3>
-              <p class="mt-4 text-sm leading-7 text-white/60" data-i18n="services.constructionText">Project execution focused on quality, timelines, and enduring finishes.</p>
+              <h3
+                class="text-xl font-bold"
+                data-i18n="services.constructionTitle"
+              >
+                Premium Construction
+              </h3>
+              <p
+                class="mt-4 text-sm leading-7 text-white/60"
+                data-i18n="services.constructionText"
+              >
+                Project execution focused on quality, timelines, and enduring
+                finishes.
+              </p>
             </div>
             <div class="border border-white/10 bg-dark-2 p-7">
               <p class="mb-5 text-3xl text-gold">03</p>
-              <h3 class="text-xl font-bold" data-i18n="services.investmentTitle">Investment Advisory</h3>
-              <p class="mt-4 text-sm leading-7 text-white/60" data-i18n="services.investmentText">Clear market guidance for buyers, sellers, developers, and investors.</p>
+              <h3
+                class="text-xl font-bold"
+                data-i18n="services.investmentTitle"
+              >
+                Investment Advisory
+              </h3>
+              <p
+                class="mt-4 text-sm leading-7 text-white/60"
+                data-i18n="services.investmentText"
+              >
+                Clear market guidance for buyers, sellers, developers, and
+                investors.
+              </p>
             </div>
             <div class="border border-white/10 bg-dark-2 p-7">
               <p class="mb-5 text-3xl text-gold">04</p>
-              <h3 class="text-xl font-bold" data-i18n="services.developmentTitle">Real Estate Development</h3>
-              <p class="mt-4 text-sm leading-7 text-white/60" data-i18n="services.developmentText">Planning and delivery support for refined residential environments.</p>
+              <h3
+                class="text-xl font-bold"
+                data-i18n="services.developmentTitle"
+              >
+                Real Estate Development
+              </h3>
+              <p
+                class="mt-4 text-sm leading-7 text-white/60"
+                data-i18n="services.developmentText"
+              >
+                Planning and delivery support for refined residential
+                environments.
+              </p>
             </div>
           </div>
         </div>
@@ -1326,38 +1860,90 @@
       <section id="office" class="bg-dark px-5 py-24 lg:px-8">
         <div class="mx-auto max-w-7xl">
           <div class="mb-12 max-w-3xl">
-            <p class="section-label" data-i18n="office.label">Visit Our Office</p>
-            <h2 class="section-heading" data-i18n="office.title">Private consultations in the heart of Kaslik.</h2>
+            <p class="section-label" data-i18n="office.label">
+              Visit Our Office
+            </p>
+            <h2 class="section-heading" data-i18n="office.title">
+              Private consultations in the heart of Kaslik.
+            </h2>
           </div>
 
-          <div class="overflow-hidden border border-gold/25 bg-dark-2/90 shadow-2xl shadow-black/30 backdrop-blur-xl">
+          <div
+            class="overflow-hidden border border-gold/25 bg-dark-2/90 shadow-2xl shadow-black/30 backdrop-blur-xl"
+          >
             <div class="grid gap-0 lg:grid-cols-[0.85fr_1.15fr]">
               <div class="space-y-7 p-7 md:p-10">
                 <div class="flex flex-wrap items-start justify-between gap-4">
                   <div>
-                    <p class="text-xs font-semibold uppercase tracking-widest text-gold" data-i18n="office.locationLabel">Location</p>
-                    <h3 class="mt-3 font-playfair text-3xl font-bold">EID Properties & Construction</h3>
-                    <p class="mt-3 leading-7 text-white/70" data-i18n="office.address">Kaslik, Altavista Center<br />Lebanon</p>
+                    <p
+                      class="text-xs font-semibold uppercase tracking-widest text-gold"
+                      data-i18n="office.locationLabel"
+                    >
+                      Location
+                    </p>
+                    <h3 class="mt-3 font-playfair text-3xl font-bold">
+                      EID Properties & Construction
+                    </h3>
+                    <p
+                      class="mt-3 leading-7 text-white/70"
+                      data-i18n="office.address"
+                    >
+                      Kaslik, Altavista Center<br />Lebanon
+                    </p>
                   </div>
-                  <span class="border border-emerald-400/40 bg-emerald-500/15 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-300" data-i18n="office.openNow">Open Now</span>
+                  <span
+                    class="border border-emerald-400/40 bg-emerald-500/15 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-300"
+                    data-i18n="office.openNow"
+                    >Open Now</span
+                  >
                 </div>
 
                 <p class="leading-8 text-white/70" data-i18n="office.text">
-                  Located in the heart of Kaslik at Altavista Center, our office welcomes clients for private real estate consultations, construction inquiries, and investment guidance.
+                  Located in the heart of Kaslik at Altavista Center, our office
+                  welcomes clients for private real estate consultations,
+                  construction inquiries, and investment guidance.
                 </p>
 
                 <div class="border border-white/10 bg-dark p-6">
-                  <p class="text-xs font-semibold uppercase tracking-widest text-gold" data-i18n="office.hoursLabel">Opening Hours</p>
+                  <p
+                    class="text-xs font-semibold uppercase tracking-widest text-gold"
+                    data-i18n="office.hoursLabel"
+                  >
+                    Opening Hours
+                  </p>
                   <div class="mt-5 space-y-3 text-sm text-white/70">
-                    <p><span class="font-semibold text-gold" data-i18n="office.weekdays">Monday - Saturday:</span> 8:00 AM - 7:00 PM</p>
-                    <p><span class="font-semibold text-gold" data-i18n="office.sunday">Sunday:</span> <span data-i18n="office.closed">Closed</span></p>
+                    <p>
+                      <span
+                        class="font-semibold text-gold"
+                        data-i18n="office.weekdays"
+                        >Monday - Saturday:</span
+                      >
+                      8:00 AM - 7:00 PM
+                    </p>
+                    <p>
+                      <span
+                        class="font-semibold text-gold"
+                        data-i18n="office.sunday"
+                        >Sunday:</span
+                      >
+                      <span data-i18n="office.closed">Closed</span>
+                    </p>
                   </div>
                 </div>
 
-                <a class="btn-gold inline-flex" href="https://www.google.com/maps/search/?api=1&query=Kaslik%2C%20Altavista%20Center%2C%20Lebanon" target="_blank" rel="noopener" data-i18n="office.mapsCta">Open in Maps</a>
+                <a
+                  class="btn-gold inline-flex"
+                  href="https://www.google.com/maps/search/?api=1&query=Kaslik%2C%20Altavista%20Center%2C%20Lebanon"
+                  target="_blank"
+                  rel="noopener"
+                  data-i18n="office.mapsCta"
+                  >Open in Maps</a
+                >
               </div>
 
-              <div class="min-h-[360px] border-t border-white/10 lg:border-l lg:border-t-0">
+              <div
+                class="min-h-[360px] border-t border-white/10 lg:border-l lg:border-t-0"
+              >
                 <iframe
                   title="Google Maps location for Kaslik Altavista Center Lebanon"
                   src="https://www.google.com/maps?q=Kaslik%2C%20Altavista%20Center%2C%20Lebanon&output=embed"
@@ -1375,191 +1961,225 @@
         <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
             <p class="section-label" data-i18n="contact.label">Contact</p>
-            <h2 class="section-heading" data-i18n="contact.title">Start your next property conversation.</h2>
-            <p class="leading-8 text-white/70" data-i18n="contact.text">Share your vision with us, and our team will guide you toward the right property, project, or investment opportunity.</p>
+            <h2 class="section-heading" data-i18n="contact.title">
+              Start your next property conversation.
+            </h2>
+            <p class="leading-8 text-white/70" data-i18n="contact.text">
+              Share your vision with us, and our team will guide you toward the
+              right property, project, or investment opportunity.
+            </p>
             <div class="mt-8 space-y-4 text-sm text-white/65">
-              <p><span class="font-semibold text-gold">Email:</span> davideid2004@icloud.com</p>
-              <p><span class="font-semibold text-gold">Phone:</span> +961 76 033 933</p>
-              <p><span class="font-semibold text-gold">Office:</span> Kaslik , Altavista Center</p>
+              <p>
+                <span class="font-semibold text-gold">Email:</span>
+                davideid2004@icloud.com
+              </p>
+              <p>
+                <span class="font-semibold text-gold">Phone:</span> +961 76 033
+                933
+              </p>
+              <p>
+                <span class="font-semibold text-gold">Office:</span> Kaslik ,
+                Altavista Center
+              </p>
             </div>
           </div>
 
-          <form id="contact-form" class="grid gap-5 border border-white/10 bg-dark p-6 md:p-8">
+          <form
+            id="contact-form"
+            class="grid gap-5 border border-white/10 bg-dark p-6 md:p-8"
+          >
             <div class="grid gap-5 md:grid-cols-2">
               <label class="block">
-                <span class="mb-2 block text-xs uppercase tracking-widest text-white/55" data-i18n="form.name">Name</span>
-                <input required type="text" name="name" class="w-full border border-white/10 bg-dark-2 px-4 py-3 text-white outline-none transition focus:border-gold" />
+                <span
+                  class="mb-2 block text-xs uppercase tracking-widest text-white/55"
+                  data-i18n="form.name"
+                  >Name</span
+                >
+                <input
+                  required
+                  type="text"
+                  name="name"
+                  class="w-full border border-white/10 bg-dark-2 px-4 py-3 text-white outline-none transition focus:border-gold"
+                />
               </label>
               <label class="block">
-                <span class="mb-2 block text-xs uppercase tracking-widest text-white/55" data-i18n="form.email">Email</span>
-                <input required type="email" name="email" class="w-full border border-white/10 bg-dark-2 px-4 py-3 text-white outline-none transition focus:border-gold" />
+                <span
+                  class="mb-2 block text-xs uppercase tracking-widest text-white/55"
+                  data-i18n="form.email"
+                  >Email</span
+                >
+                <input
+                  required
+                  type="email"
+                  name="email"
+                  class="w-full border border-white/10 bg-dark-2 px-4 py-3 text-white outline-none transition focus:border-gold"
+                />
               </label>
             </div>
             <label class="block">
-              <span class="mb-2 block text-xs uppercase tracking-widest text-white/55" data-i18n="form.interest">Interest</span>
-              <select name="interest" class="w-full border border-white/10 bg-dark-2 px-4 py-3 text-white outline-none transition focus:border-gold">
+              <span
+                class="mb-2 block text-xs uppercase tracking-widest text-white/55"
+                data-i18n="form.interest"
+                >Interest</span
+              >
+              <select
+                name="interest"
+                class="w-full border border-white/10 bg-dark-2 px-4 py-3 text-white outline-none transition focus:border-gold"
+              >
                 <option data-i18n="form.buying">Buying a property</option>
                 <option data-i18n="form.selling">Selling a property</option>
-                <option data-i18n="form.construction">Construction project</option>
-                <option data-i18n="form.investment">Investment consultation</option>
+                <option data-i18n="form.construction">
+                  Construction project
+                </option>
+                <option data-i18n="form.investment">
+                  Investment consultation
+                </option>
               </select>
             </label>
             <label class="block">
-              <span class="mb-2 block text-xs uppercase tracking-widest text-white/55" data-i18n="form.message">Message</span>
-              <textarea required name="message" rows="5" class="w-full resize-none border border-white/10 bg-dark-2 px-4 py-3 text-white outline-none transition focus:border-gold"></textarea>
+              <span
+                class="mb-2 block text-xs uppercase tracking-widest text-white/55"
+                data-i18n="form.message"
+                >Message</span
+              >
+              <textarea
+                required
+                name="message"
+                rows="5"
+                class="w-full resize-none border border-white/10 bg-dark-2 px-4 py-3 text-white outline-none transition focus:border-gold"
+              ></textarea>
             </label>
-            <button type="submit" class="btn-gold justify-self-start" data-i18n="form.submit">Send Message</button>
-            <p id="form-status" class="hidden text-sm text-gold" role="status"></p>
+            <button
+              type="submit"
+              class="btn-gold justify-self-start"
+              data-i18n="form.submit"
+            >
+              Send Message
+            </button>
+            <p
+              id="form-status"
+              class="hidden text-sm text-gold"
+              role="status"
+            ></p>
           </form>
         </div>
       </section>
     </main>
 
     <footer class="border-t border-white/10 bg-dark px-5 py-10 lg:px-8">
-      <div class="mx-auto flex max-w-7xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
+      <div
+        class="mx-auto flex max-w-7xl flex-col gap-6 md:flex-row md:items-center md:justify-between"
+      >
         <div>
-          <p class="font-playfair text-2xl font-bold">EID <span class="text-gold">Properties</span></p>
-          <p class="mt-2 text-sm text-white/50" data-i18n="footer.tagline">Premium real estate, construction, and investment guidance since 1996.</p>
+          <p class="font-playfair text-2xl font-bold">
+            EID <span class="text-gold">Properties</span>
+          </p>
+          <p class="mt-2 text-sm text-white/50" data-i18n="footer.tagline">
+            Premium real estate, construction, and investment guidance since
+            1996.
+          </p>
         </div>
-        <p class="text-sm text-white/45">&copy; <span id="year"></span> <span data-i18n="footer.rights">EID Properties & Construction. All rights reserved.</span></p>
+        <p class="text-sm text-white/45">
+          &copy; <span id="year"></span>
+          <span data-i18n="footer.rights"
+            >EID Properties & Construction. All rights reserved.</span
+          >
+        </p>
       </div>
     </footer>
 
-    
-            <div id="chatbot-container"
-                class="fixed bottom-24 right-6 z-50">
+    <div id="chatbot-container" class="fixed bottom-24 right-6 z-50">
+      <button
+        id="chat-toggle"
+        class="w-16 h-16 rounded-full bg-[#8B6B47] text-white shadow-xl hover:bg-[#6F5337] transition"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 17 0Z"
+          />
+          <path d="M8 10h8" />
+          <path d="M8 14h5" />
+        </svg>
+        <span class="sr-only">Open chat</span>
+      </button>
+    </div>
 
-                <button
-                    id="chat-toggle"
-                    class="
-                    w-16
-                    h-16
-                    rounded-full
-                    bg-[#8B6B47]
-                    text-white
-                    shadow-xl
-                    hover:bg-[#6F5337]
-                    transition">
+    <!--Chat window-->
+    <div
+      id="chat-window"
+      class="hidden fixed bottom-44 right-6 w-96 h-[550px] bg-[var(--bg-card)] border border-[var(--border)] rounded-3xl shadow-2xl overflow-hidden z-50"
+    >
+      <div class="bg-[var(--accent)] text-white p-5">
+        <h3 class="font-semibold">EID Assistant</h3>
 
-                    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 17 0Z" />
-                      <path d="M8 10h8" />
-                      <path d="M8 14h5" />
-                    </svg>
-                    <span class="sr-only">Open chat</span>
+        <p class="text-sm opacity-80">Ask us anything about properties</p>
+      </div>
 
-                </button>
+      <div id="chat-messages" class="h-[420px] overflow-y-auto p-4 space-y-4">
+        <div class="bg-[var(--bg-muted)] p-3 rounded-xl w-fit">
+          Hi 👋 How can I help you today?
+        </div>
 
-            </div>
+        <div class="flex flex-wrap gap-2 mt-3">
+          <button
+            class="chat-suggestion px-3 py-2 rounded-lg bg-[var(--bg-muted)]"
+          >
+            View Listings
+          </button>
 
-            <!--Chat window-->
-            <div
-                id="chat-window"
-                class="
-                    hidden
-                    fixed
-                    bottom-44
-                    right-6
-                    w-96
-                    h-[550px]
-                    bg-[var(--bg-card)]
-                    border
-                    border-[var(--border)]
-                    rounded-3xl
-                    shadow-2xl
-                    overflow-hidden
-                    z-50">
+          <button
+            class="chat-suggestion px-3 py-2 rounded-lg bg-[var(--bg-muted)]"
+          >
+            Price Range
+          </button>
 
-                <div
-                    class="
-                    bg-[var(--accent)]
-                    text-white
-                    p-5">
+          <button
+            class="chat-suggestion px-3 py-2 rounded-lg bg-[var(--bg-muted)]"
+          >
+            Locations
+          </button>
 
-                    <h3 class="font-semibold">
-                        EID Assistant
-                    </h3>
+          <button
+            class="chat-suggestion px-3 py-2 rounded-lg bg-[var(--bg-muted)]"
+          >
+            Contact Team
+          </button>
+        </div>
+      </div>
 
-                    <p class="text-sm opacity-80">
-                        Ask us anything about properties
-                    </p>
-
-                </div>
-
-                <div
-                    id="chat-messages"
-                    class="
-                    h-[420px]
-                    overflow-y-auto
-                    p-4
-                    space-y-4">
-
-                    <div
-                        class="
-                        bg-[var(--bg-muted)]
-                        p-3
-                        rounded-xl
-                        w-fit">
-
-                        Hi 👋 How can I help you today?
-
-                    </div>
-
-                    <div class="flex flex-wrap gap-2 mt-3">
-
-                        <button
-                            class="chat-suggestion px-3 py-2 rounded-lg bg-[var(--bg-muted)]">
-                            View Listings
-                        </button>
-
-                        <button
-                            class="chat-suggestion px-3 py-2 rounded-lg bg-[var(--bg-muted)]">
-                            Price Range
-                        </button>
-
-                        <button
-                            class="chat-suggestion px-3 py-2 rounded-lg bg-[var(--bg-muted)]">
-                            Locations
-                        </button>
-
-                        <button
-                            class="chat-suggestion px-3 py-2 rounded-lg bg-[var(--bg-muted)]">
-                            Contact Team
-                        </button>
-
-                    </div>
-
-                </div>
-
-                <div class="p-4 border-t border-[var(--border)]">
-
-                    <input
-                        id="chat-input"
-                        type="text"
-                        placeholder="Type your message..."
-                        class="
-                        w-full
-                        p-3
-                        rounded-xl
-                        border
-                        border-[var(--border)]
-                        bg-[var(--bg)]">
-
-                </div>
-
-            </div>
-    
+      <div class="p-4 border-t border-[var(--border)]">
+        <input
+          id="chat-input"
+          type="text"
+          placeholder="Type your message..."
+          class="w-full p-3 rounded-xl border border-[var(--border)] bg-[var(--bg)]"
+        />
+      </div>
+    </div>
 
     <script src="./src/js/main.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.addEventListener("DOMContentLoaded", () => {
+        const noMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
 
         if (noMotion) {
           return;
         }
 
-        const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+        const observerOptions = {
+          threshold: 0.15,
+          rootMargin: "0px 0px -50px 0px",
+        };
         const easeOut = (t) => 1 - Math.pow(1 - t, 3);
         let introComplete = false;
         const queuedRevealStarts = [];
@@ -1574,14 +2194,14 @@
         };
 
         const createCursor = () => {
-          if (window.matchMedia('(max-width: 768px)').matches) {
+          if (window.matchMedia("(max-width: 768px)").matches) {
             return;
           }
 
-          const dot = document.createElement('div');
-          const ring = document.createElement('div');
-          dot.id = 'cursor-dot';
-          ring.id = 'cursor-ring';
+          const dot = document.createElement("div");
+          const ring = document.createElement("div");
+          dot.id = "cursor-dot";
+          ring.id = "cursor-ring";
           document.body.append(dot, ring);
 
           let mouseX = window.innerWidth / 2;
@@ -1589,23 +2209,23 @@
           let ringX = mouseX;
           let ringY = mouseY;
 
-          window.addEventListener('mousemove', (event) => {
+          window.addEventListener("mousemove", (event) => {
             mouseX = event.clientX;
             mouseY = event.clientY;
             dot.style.left = `${mouseX}px`;
             dot.style.top = `${mouseY}px`;
-            document.body.classList.add('cursor-active');
+            document.body.classList.add("cursor-active");
           });
 
-          document.addEventListener('mouseover', (event) => {
-            if (event.target.closest('a, button, .btn-gold, .whatsapp-btn')) {
-              document.body.classList.add('cursor-hover');
+          document.addEventListener("mouseover", (event) => {
+            if (event.target.closest("a, button, .btn-gold, .whatsapp-btn")) {
+              document.body.classList.add("cursor-hover");
             }
           });
 
-          document.addEventListener('mouseout', (event) => {
-            if (event.target.closest('a, button, .btn-gold, .whatsapp-btn')) {
-              document.body.classList.remove('cursor-hover');
+          document.addEventListener("mouseout", (event) => {
+            if (event.target.closest("a, button, .btn-gold, .whatsapp-btn")) {
+              document.body.classList.remove("cursor-hover");
             }
           });
 
@@ -1621,14 +2241,15 @@
         };
 
         const createIntro = () => {
-          const overlay = document.createElement('div');
-          overlay.id = 'intro-overlay';
-          overlay.innerHTML = '<div id="intro-top"></div><div id="intro-bottom"></div><div id="intro-text">EID Properties</div>';
+          const overlay = document.createElement("div");
+          overlay.id = "intro-overlay";
+          overlay.innerHTML =
+            '<div id="intro-top"></div><div id="intro-bottom"></div><div id="intro-text">EID Properties</div>';
           document.body.appendChild(overlay);
 
-          window.setTimeout(() => overlay.classList.add('text-in'), 300);
-          window.setTimeout(() => overlay.classList.add('text-out'), 1400);
-          window.setTimeout(() => overlay.classList.add('intro-split'), 1800);
+          window.setTimeout(() => overlay.classList.add("text-in"), 300);
+          window.setTimeout(() => overlay.classList.add("text-out"), 1400);
+          window.setTimeout(() => overlay.classList.add("intro-split"), 1800);
           window.setTimeout(() => {
             overlay.remove();
             introComplete = true;
@@ -1637,24 +2258,26 @@
         };
 
         const createScrollBar = () => {
-          const scrollBar = document.createElement('div');
-          scrollBar.id = 'scroll-bar';
+          const scrollBar = document.createElement("div");
+          scrollBar.id = "scroll-bar";
           document.body.appendChild(scrollBar);
 
           const updateScrollBar = () => {
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+            const maxScroll =
+              document.documentElement.scrollHeight - window.innerHeight;
+            const progress =
+              maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
             scrollBar.style.width = `${progress}%`;
           };
 
           updateScrollBar();
-          window.addEventListener('scroll', updateScrollBar, { passive: true });
-          window.addEventListener('resize', updateScrollBar);
+          window.addEventListener("scroll", updateScrollBar, { passive: true });
+          window.addEventListener("resize", updateScrollBar);
         };
 
         const createGrain = () => {
-          const grain = document.createElement('div');
-          grain.id = 'grain';
+          const grain = document.createElement("div");
+          grain.id = "grain";
           document.body.appendChild(grain);
 
           const setGrain = () => {
@@ -1668,213 +2291,264 @@
         };
 
         const animateHero = () => {
-          const heroTitle = document.querySelector('#home h1');
-          const heroText = document.querySelector('#home h1 + p');
-          const heroButtons = document.querySelectorAll('#home .btn-gold, #home .btn-outline');
+          const heroTitle = document.querySelector("#home h1");
+          const heroText = document.querySelector("#home h1 + p");
+          const heroButtons = document.querySelectorAll(
+            "#home .btn-gold, #home .btn-outline",
+          );
 
           if (!heroTitle) {
             return;
           }
 
           const words = heroTitle.textContent.trim().split(/\s+/);
-          heroTitle.textContent = '';
+          heroTitle.textContent = "";
 
           words.forEach((word, index) => {
-            const span = document.createElement('span');
-            span.className = 'hero-word';
+            const span = document.createElement("span");
+            span.className = "hero-word";
             span.textContent = word;
             heroTitle.appendChild(span);
 
             if (index < words.length - 1) {
-              heroTitle.appendChild(document.createTextNode(' '));
+              heroTitle.appendChild(document.createTextNode(" "));
             }
           });
 
-          heroText?.classList.add('hero-cinematic-subtext');
-          heroButtons.forEach((button) => button.classList.add('hero-cinematic-cta'));
+          heroText?.classList.add("hero-cinematic-subtext");
+          heroButtons.forEach((button) =>
+            button.classList.add("hero-cinematic-cta"),
+          );
 
           runAfterIntro(() => {
-            const wordSpans = heroTitle.querySelectorAll('.hero-word');
+            const wordSpans = heroTitle.querySelectorAll(".hero-word");
             wordSpans.forEach((span, index) => {
               span.style.transitionDelay = `${index * 130}ms`;
-              span.classList.add('hero-cinematic-visible');
+              span.classList.add("hero-cinematic-visible");
             });
 
             const baseDelay = wordSpans.length * 130 + 300;
-            window.setTimeout(() => heroText?.classList.add('hero-cinematic-visible'), baseDelay);
+            window.setTimeout(
+              () => heroText?.classList.add("hero-cinematic-visible"),
+              baseDelay,
+            );
             heroButtons.forEach((button, index) => {
-              window.setTimeout(() => button.classList.add('hero-cinematic-visible'), baseDelay + 200 + index * 200);
+              window.setTimeout(
+                () => button.classList.add("hero-cinematic-visible"),
+                baseDelay + 200 + index * 200,
+              );
             });
           });
         };
 
         const animateStats = () => {
-          const statsSection = Array.from(document.querySelectorAll('section')).find((section) => {
-            const text = section.textContent || '';
-            return text.includes('1996') && text.includes('1000+') && text.includes('Clients');
+          const statsSection = Array.from(
+            document.querySelectorAll("section"),
+          ).find((section) => {
+            const text = section.textContent || "";
+            return (
+              text.includes("1996") &&
+              text.includes("1000+") &&
+              text.includes("Clients")
+            );
           });
 
           if (!statsSection) {
             return;
           }
 
-          const statBlocks = statsSection.querySelectorAll('.p-4');
-          const statValues = statsSection.querySelectorAll('.font-playfair.text-gold');
+          const statBlocks = statsSection.querySelectorAll(".p-4");
+          const statValues = statsSection.querySelectorAll(
+            ".font-playfair.text-gold",
+          );
 
           statBlocks.forEach((block, index) => {
-            block.style.position = 'relative';
+            block.style.position = "relative";
             if (index < statBlocks.length - 1) {
-              const line = document.createElement('div');
-              line.className = 'stats-line';
+              const line = document.createElement("div");
+              line.className = "stats-line";
               block.appendChild(line);
             }
           });
 
           const targets = [
-            { from: 1990, to: 1996, suffix: '' },
-            { from: 0, to: 7, suffix: '+' },
-            { from: 0, to: 1000, suffix: '+' },
-            { from: 0, to: 30, suffix: '+' }
+            { from: 1990, to: 1996, suffix: "" },
+            { from: 0, to: 7, suffix: "+" },
+            { from: 0, to: 1000, suffix: "+" },
+            { from: 0, to: 30, suffix: "+" },
           ];
 
-          const observer = new IntersectionObserver((entries, activeObserver) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) {
-                return;
-              }
-
-              runAfterIntro(() => {
-                const startedAt = performance.now();
-
-                const step = (now) => {
-                  const progress = Math.min((now - startedAt) / 2000, 1);
-                  const eased = easeOut(progress);
-
-                  statValues.forEach((value, index) => {
-                    const config = targets[index];
-                    const current = Math.round(config.from + (config.to - config.from) * eased);
-                    value.textContent = `${current}${config.suffix}`;
-                  });
-
-                  if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                  } else {
-                    statsSection.querySelectorAll('.stats-line').forEach((line, index) => {
-                      window.setTimeout(() => line.classList.add('line-visible'), index * 120);
-                    });
-                  }
-                };
-
-                window.requestAnimationFrame(step);
-              });
-
-              activeObserver.unobserve(entry.target);
-            });
-          }, { threshold: 0.5 });
-
-          observer.observe(statsSection);
-        };
-
-        const animateCards = () => {
-          const cards = document.querySelectorAll('article.property-card');
-
-          cards.forEach((card, index) => {
-            card.classList.add('cinematic-card');
-            card.dataset.cinematicIndex = String(index);
-
-            if (!card.querySelector('.card-overlay')) {
-              const overlay = document.createElement('div');
-              overlay.className = 'card-overlay';
-              card.appendChild(overlay);
-            }
-          });
-
-          const observer = new IntersectionObserver((entries, activeObserver) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) {
-                return;
-              }
-
-              runAfterIntro(() => {
-                const index = Number(entry.target.dataset.cinematicIndex || 0);
-                entry.target.style.transitionDelay = `${index * 110}ms`;
-                entry.target.classList.add('card-visible');
-              });
-
-              activeObserver.unobserve(entry.target);
-            });
-          }, observerOptions);
-
-          cards.forEach((card) => observer.observe(card));
-        };
-
-        const animateSections = () => {
-          const labels = document.querySelectorAll('.section-label');
-          const headings = document.querySelectorAll('.section-heading');
-          const paragraphs = Array.from(document.querySelectorAll('p')).filter((paragraph) => (
-            paragraph.classList.contains('text-white/65') ||
-            paragraph.classList.contains('text-white/70') ||
-            paragraph.classList.contains('leading-8')
-          ));
-
-          labels.forEach((label) => label.classList.add('cinematic-reveal-label'));
-          paragraphs.forEach((paragraph) => paragraph.classList.add('cinematic-paragraph'));
-
-          headings.forEach((heading) => {
-            heading.classList.add('cinematic-heading');
-            if (!heading.previousElementSibling?.classList.contains('heading-line')) {
-              const line = document.createElement('div');
-              line.className = 'heading-line';
-              heading.parentElement.insertBefore(line, heading);
-            }
-          });
-
-          const reveal = (element, callback) => {
-            const observer = new IntersectionObserver((entries, activeObserver) => {
+          const observer = new IntersectionObserver(
+            (entries, activeObserver) => {
               entries.forEach((entry) => {
                 if (!entry.isIntersecting) {
                   return;
                 }
 
-                runAfterIntro(callback);
+                runAfterIntro(() => {
+                  const startedAt = performance.now();
+
+                  const step = (now) => {
+                    const progress = Math.min((now - startedAt) / 2000, 1);
+                    const eased = easeOut(progress);
+
+                    statValues.forEach((value, index) => {
+                      const config = targets[index];
+                      const current = Math.round(
+                        config.from + (config.to - config.from) * eased,
+                      );
+                      value.textContent = `${current}${config.suffix}`;
+                    });
+
+                    if (progress < 1) {
+                      window.requestAnimationFrame(step);
+                    } else {
+                      statsSection
+                        .querySelectorAll(".stats-line")
+                        .forEach((line, index) => {
+                          window.setTimeout(
+                            () => line.classList.add("line-visible"),
+                            index * 120,
+                          );
+                        });
+                    }
+                  };
+
+                  window.requestAnimationFrame(step);
+                });
+
                 activeObserver.unobserve(entry.target);
               });
-            }, observerOptions);
+            },
+            { threshold: 0.5 },
+          );
+
+          observer.observe(statsSection);
+        };
+
+        const animateCards = () => {
+          const cards = document.querySelectorAll("article.property-card");
+
+          cards.forEach((card, index) => {
+            card.classList.add("cinematic-card");
+            card.dataset.cinematicIndex = String(index);
+
+            if (!card.querySelector(".card-overlay")) {
+              const overlay = document.createElement("div");
+              overlay.className = "card-overlay";
+              card.appendChild(overlay);
+            }
+          });
+
+          const observer = new IntersectionObserver(
+            (entries, activeObserver) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                  return;
+                }
+
+                runAfterIntro(() => {
+                  const index = Number(
+                    entry.target.dataset.cinematicIndex || 0,
+                  );
+                  entry.target.style.transitionDelay = `${index * 110}ms`;
+                  entry.target.classList.add("card-visible");
+                });
+
+                activeObserver.unobserve(entry.target);
+              });
+            },
+            observerOptions,
+          );
+
+          cards.forEach((card) => observer.observe(card));
+        };
+
+        const animateSections = () => {
+          const labels = document.querySelectorAll(".section-label");
+          const headings = document.querySelectorAll(".section-heading");
+          const paragraphs = Array.from(document.querySelectorAll("p")).filter(
+            (paragraph) =>
+              paragraph.classList.contains("text-white/65") ||
+              paragraph.classList.contains("text-white/70") ||
+              paragraph.classList.contains("leading-8"),
+          );
+
+          labels.forEach((label) =>
+            label.classList.add("cinematic-reveal-label"),
+          );
+          paragraphs.forEach((paragraph) =>
+            paragraph.classList.add("cinematic-paragraph"),
+          );
+
+          headings.forEach((heading) => {
+            heading.classList.add("cinematic-heading");
+            if (
+              !heading.previousElementSibling?.classList.contains(
+                "heading-line",
+              )
+            ) {
+              const line = document.createElement("div");
+              line.className = "heading-line";
+              heading.parentElement.insertBefore(line, heading);
+            }
+          });
+
+          const reveal = (element, callback) => {
+            const observer = new IntersectionObserver(
+              (entries, activeObserver) => {
+                entries.forEach((entry) => {
+                  if (!entry.isIntersecting) {
+                    return;
+                  }
+
+                  runAfterIntro(callback);
+                  activeObserver.unobserve(entry.target);
+                });
+              },
+              observerOptions,
+            );
 
             observer.observe(element);
           };
 
-          labels.forEach((label) => reveal(label, () => label.classList.add('reveal-visible')));
+          labels.forEach((label) =>
+            reveal(label, () => label.classList.add("reveal-visible")),
+          );
           paragraphs.forEach((paragraph, index) => {
             reveal(paragraph, () => {
               paragraph.style.transitionDelay = `${Math.min(index % 3, 2) * 120}ms`;
-              paragraph.classList.add('reveal-visible');
+              paragraph.classList.add("reveal-visible");
             });
           });
 
           headings.forEach((heading) => {
             reveal(heading, () => {
               const line = heading.previousElementSibling;
-              line?.classList.add('line-visible');
-              window.setTimeout(() => heading.classList.add('reveal-visible'), 300);
+              line?.classList.add("line-visible");
+              window.setTimeout(
+                () => heading.classList.add("reveal-visible"),
+                300,
+              );
             });
           });
         };
 
         const animateAbout = () => {
-          const about = document.getElementById('about');
-          const aboutImage = about?.querySelector('img');
-          const textBlock = about?.querySelector('.section-label')?.parentElement;
+          const about = document.getElementById("about");
+          const aboutImage = about?.querySelector("img");
+          const textBlock =
+            about?.querySelector(".section-label")?.parentElement;
 
           if (!about || !aboutImage || !textBlock) {
             return;
           }
 
-          textBlock.classList.add('about-text-frame');
+          textBlock.classList.add("about-text-frame");
 
-          if (!textBlock.querySelector('.about-line')) {
-            const line = document.createElement('div');
-            line.className = 'about-line';
+          if (!textBlock.querySelector(".about-line")) {
+            const line = document.createElement("div");
+            line.className = "about-line";
             textBlock.prepend(line);
           }
 
@@ -1885,100 +2559,122 @@
             aboutImage.style.transform = `translateY(${offset}px)`;
           };
 
-          const observer = new IntersectionObserver((entries, activeObserver) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) {
-                return;
-              }
+          const observer = new IntersectionObserver(
+            (entries, activeObserver) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                  return;
+                }
 
-              runAfterIntro(() => textBlock.querySelector('.about-line')?.classList.add('line-visible'));
-              activeObserver.unobserve(entry.target);
-            });
-          }, observerOptions);
+                runAfterIntro(() =>
+                  textBlock
+                    .querySelector(".about-line")
+                    ?.classList.add("line-visible"),
+                );
+                activeObserver.unobserve(entry.target);
+              });
+            },
+            observerOptions,
+          );
 
           observer.observe(textBlock);
           updateParallax();
-          window.addEventListener('scroll', updateParallax, { passive: true });
-          window.addEventListener('resize', updateParallax);
+          window.addEventListener("scroll", updateParallax, { passive: true });
+          window.addEventListener("resize", updateParallax);
         };
 
         const enhanceServices = () => {
-          document.querySelectorAll('#services .border.border-white\\/10.bg-dark-2.p-7').forEach((card) => {
-            const number = card.querySelector('.text-3xl.text-gold');
+          document
+            .querySelectorAll(
+              "#services .border.border-white\\/10.bg-dark-2.p-7",
+            )
+            .forEach((card) => {
+              const number = card.querySelector(".text-3xl.text-gold");
 
-            if (!number || card.querySelector('.ghost-number')) {
-              return;
-            }
+              if (!number || card.querySelector(".ghost-number")) {
+                return;
+              }
 
-            const ghost = document.createElement('span');
-            ghost.className = 'ghost-number';
-            ghost.textContent = number.textContent;
-            card.appendChild(ghost);
-          });
+              const ghost = document.createElement("span");
+              ghost.className = "ghost-number";
+              ghost.textContent = number.textContent;
+              card.appendChild(ghost);
+            });
         };
 
         const enhanceNavbar = () => {
-          const header = document.getElementById('site-header');
+          const header = document.getElementById("site-header");
 
           if (!header) {
             return;
           }
 
           const syncNav = () => {
-            header.classList.toggle('nav-scrolled', window.scrollY > 80);
+            header.classList.toggle("nav-scrolled", window.scrollY > 80);
           };
 
           syncNav();
-          window.addEventListener('scroll', syncNav, { passive: true });
+          window.addEventListener("scroll", syncNav, { passive: true });
         };
 
         const enhanceContactForm = () => {
-          document.querySelectorAll('#contact-form input, #contact-form select, #contact-form textarea').forEach((field) => {
-            const label = field.closest('label')?.querySelector('span');
+          document
+            .querySelectorAll(
+              "#contact-form input, #contact-form select, #contact-form textarea",
+            )
+            .forEach((field) => {
+              const label = field.closest("label")?.querySelector("span");
 
-            field.addEventListener('focus', () => label?.classList.add('label-active'));
-            field.addEventListener('blur', () => {
-              if (!field.value) {
-                label?.classList.remove('label-active');
-              }
+              field.addEventListener("focus", () =>
+                label?.classList.add("label-active"),
+              );
+              field.addEventListener("blur", () => {
+                if (!field.value) {
+                  label?.classList.remove("label-active");
+                }
+              });
             });
-          });
         };
 
         const animateFooter = () => {
-          const footer = document.querySelector('footer');
+          const footer = document.querySelector("footer");
 
           if (!footer) {
             return;
           }
 
-          const line = document.createElement('div');
-          line.className = 'footer-line';
+          const line = document.createElement("div");
+          line.className = "footer-line";
           footer.prepend(line);
 
-          const observer = new IntersectionObserver((entries, activeObserver) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) {
-                return;
-              }
+          const observer = new IntersectionObserver(
+            (entries, activeObserver) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                  return;
+                }
 
-              runAfterIntro(() => line.classList.add('line-visible'));
-              activeObserver.unobserve(entry.target);
-            });
-          }, observerOptions);
+                runAfterIntro(() => line.classList.add("line-visible"));
+                activeObserver.unobserve(entry.target);
+              });
+            },
+            observerOptions,
+          );
 
           observer.observe(footer);
         };
 
         const enhanceOffice = () => {
-          const officeCard = document.querySelector('#office .overflow-hidden.border');
+          const officeCard = document.querySelector(
+            "#office .overflow-hidden.border",
+          );
 
-          if (!officeCard || officeCard.querySelector('.office-glow')) {
+          if (!officeCard || officeCard.querySelector(".office-glow")) {
             return;
           }
 
-          const glow = document.createElement('div');
-          glow.className = 'office-glow';
+          const glow = document.createElement("div");
+          glow.className = "office-glow";
           officeCard.prepend(glow);
         };
 
@@ -1999,42 +2695,42 @@
       });
     </script>
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const btn = document.getElementById('view-all-btn');
-        const panel = document.getElementById('all-properties-panel');
-        const label = document.getElementById('view-all-label');
-        const arrow = document.getElementById('view-all-arrow');
-        const rows = document.querySelectorAll('.all-prop-row');
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.getElementById("view-all-btn");
+        const panel = document.getElementById("all-properties-panel");
+        const label = document.getElementById("view-all-label");
+        const arrow = document.getElementById("view-all-arrow");
+        const rows = document.querySelectorAll(".all-prop-row");
         let isOpen = false;
 
         if (!btn || !panel || !label || !arrow) {
           return;
         }
 
-        btn.addEventListener('click', () => {
+        btn.addEventListener("click", () => {
           if (!isOpen) {
-            panel.style.maxHeight = '9999px';
-            panel.style.opacity = '1';
-            panel.style.marginTop = '64px';
-            label.textContent = 'Close';
-            arrow.textContent = '\u2191';
+            panel.style.maxHeight = "9999px";
+            panel.style.opacity = "1";
+            panel.style.marginTop = "64px";
+            label.textContent = "Close";
+            arrow.textContent = "\u2191";
             isOpen = true;
             rows.forEach((row, i) => {
               setTimeout(() => {
-                row.classList.add('visible');
+                row.classList.add("visible");
               }, i * 90);
             });
             setTimeout(() => {
-              panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              panel.scrollIntoView({ behavior: "smooth", block: "start" });
             }, 200);
           } else {
-            rows.forEach((row) => row.classList.remove('visible'));
+            rows.forEach((row) => row.classList.remove("visible"));
             setTimeout(() => {
-              panel.style.maxHeight = '0';
-              panel.style.opacity = '0';
-              panel.style.marginTop = '0';
-              label.textContent = 'View All Properties';
-              arrow.textContent = '\u2193';
+              panel.style.maxHeight = "0";
+              panel.style.opacity = "0";
+              panel.style.marginTop = "0";
+              label.textContent = "View All Properties";
+              arrow.textContent = "\u2193";
               isOpen = false;
             }, 300);
           }
@@ -2042,26 +2738,26 @@
       });
     </script>
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const chatToggle = document.getElementById('chat-toggle');
-        const chatWindow = document.getElementById('chat-window');
-        const chatMessages = document.getElementById('chat-messages');
-        const chatInput = document.getElementById('chat-input');
-        const suggestions = document.querySelectorAll('.chat-suggestion');
+      document.addEventListener("DOMContentLoaded", () => {
+        const chatToggle = document.getElementById("chat-toggle");
+        const chatWindow = document.getElementById("chat-window");
+        const chatMessages = document.getElementById("chat-messages");
+        const chatInput = document.getElementById("chat-input");
+        const suggestions = document.querySelectorAll(".chat-suggestion");
 
         if (!chatToggle || !chatWindow || !chatMessages || !chatInput) {
           return;
         }
 
-        const firstMessage = chatMessages.querySelector('div');
+        const firstMessage = chatMessages.querySelector("div");
         if (firstMessage) {
-          firstMessage.className = 'chat-bubble chat-bot';
-          firstMessage.textContent = 'Hi. How can I help you today?';
+          firstMessage.className = "chat-bubble chat-bot";
+          firstMessage.textContent = "Hi. How can I help you today?";
         }
 
         function addMessage(content, type) {
-          const message = document.createElement('div');
-          message.className = `chat-bubble ${type === 'user' ? 'chat-user' : 'chat-bot'}`;
+          const message = document.createElement("div");
+          message.className = `chat-bubble ${type === "user" ? "chat-user" : "chat-bot"}`;
           message.innerHTML = content;
           chatMessages.appendChild(message);
           chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -2070,91 +2766,184 @@
         function getResponse(message) {
           const lower = message.toLowerCase();
 
-          if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey') || lower.includes('good morning') || lower.includes('good evening')) {
-            return 'Welcome to EID Properties & Construction. How can I assist you today?';
+          if (
+            lower.includes("hello") ||
+            lower.includes("hi") ||
+            lower.includes("hey") ||
+            lower.includes("good morning") ||
+            lower.includes("good evening")
+          ) {
+            return "Welcome to EID Properties & Construction. How can I assist you today?";
           }
 
-          if (lower.includes('properties') || lower.includes('available') || lower.includes('listings') || lower.includes('what do you have')) {
-            return 'We currently have the following properties available:<br><br><b>Marina Waterfront Residence</b> - Dbayeh, Metn - $1,600,000<br><b>Kaslik Altavista Residence</b> - Kaslik - $250,000<br><b>Adma Hillside Villa</b> - Adma, Keserwan - $900,000<br><b>Kfarhbab Grand Residence</b> - Kfarhbab - $750,000<br><b>Ghosta Contemporary Villa</b> - Ghosta, Keserwan - Contact for Price<br><b>Kleiat Stone Villa</b> - Kleiat, Keserwan - Contact for Price';
+          if (
+            lower.includes("properties") ||
+            lower.includes("available") ||
+            lower.includes("listings") ||
+            lower.includes("what do you have")
+          ) {
+            return "We currently have the following properties available:<br><br><b>Marina Waterfront Residence</b> - Dbayeh, Metn - $1,600,000<br><b>Kaslik Altavista Residence</b> - Kaslik - $250,000<br><b>Adma Hillside Villa</b> - Adma, Keserwan - $900,000<br><b>Kfarhbab Grand Residence</b> - Kfarhbab - $750,000<br><b>Ghosta Contemporary Villa</b> - Ghosta, Keserwan - Contact for Price<br><b>Kleiat Stone Villa</b> - Kleiat, Keserwan - Contact for Price";
           }
 
-          if (lower.includes('villa')) {
-            return 'We have several villas available:<br><br><b>Adma Hillside Villa</b> - $900,000<br><b>Ghosta Contemporary Villa</b> - Contact for Price<br><b>Kleiat Stone Villa</b> - Contact for Price<br><br>Would you like more details on any of these?';
+          if (lower.includes("villa")) {
+            return "We have several villas available:<br><br><b>Adma Hillside Villa</b> - $900,000<br><b>Ghosta Contemporary Villa</b> - Contact for Price<br><b>Kleiat Stone Villa</b> - Contact for Price<br><br>Would you like more details on any of these?";
           }
 
-          if (lower.includes('apartment') || lower.includes('flat')) {
-            return 'We have the <b>Kaslik Altavista Residence</b> apartment available for $250,000 in Kaslik. Would you like more information?';
+          if (lower.includes("apartment") || lower.includes("flat")) {
+            return "We have the <b>Kaslik Altavista Residence</b> apartment available for $250,000 in Kaslik. Would you like more information?";
           }
 
-          if (lower.includes('price') || lower.includes('cost') || lower.includes('how much') || lower.includes('budget')) {
-            return 'Our property prices range from $250,000 to $1,600,000 depending on location and type.<br><br>Kaslik Residence - $250,000<br>Kfarhbab Grand Residence - $750,000<br>Adma Hillside Villa - $900,000<br>Marina Waterfront - $1,600,000<br>Ghosta & Kleiat Villas - Contact for Price';
+          if (
+            lower.includes("price") ||
+            lower.includes("cost") ||
+            lower.includes("how much") ||
+            lower.includes("budget")
+          ) {
+            return "Our property prices range from $250,000 to $1,600,000 depending on location and type.<br><br>Kaslik Residence - $250,000<br>Kfarhbab Grand Residence - $750,000<br>Adma Hillside Villa - $900,000<br>Marina Waterfront - $1,600,000<br>Ghosta & Kleiat Villas - Contact for Price";
           }
 
-          if (lower.includes('location') || lower.includes('where') || lower.includes('area') || lower.includes('region') || lower.includes('keserwan') || lower.includes('jounieh') || lower.includes('metn') || lower.includes('adma') || lower.includes('kaslik') || lower.includes('ghosta') || lower.includes('kleiat') || lower.includes('kfarhbab')) {
-            return 'Our properties are located across premium Lebanese regions:<br><br>Adma - Keserwan<br>Kaslik - Jounieh District<br>Kfarhbab - Jounieh District<br>Ghosta - Keserwan<br>Kleiat - Keserwan<br>Waterfront City, Dbayeh - Metn';
+          if (
+            lower.includes("location") ||
+            lower.includes("where") ||
+            lower.includes("area") ||
+            lower.includes("region") ||
+            lower.includes("keserwan") ||
+            lower.includes("jounieh") ||
+            lower.includes("metn") ||
+            lower.includes("adma") ||
+            lower.includes("kaslik") ||
+            lower.includes("ghosta") ||
+            lower.includes("kleiat") ||
+            lower.includes("kfarhbab")
+          ) {
+            return "Our properties are located across premium Lebanese regions:<br><br>Adma - Keserwan<br>Kaslik - Jounieh District<br>Kfarhbab - Jounieh District<br>Ghosta - Keserwan<br>Kleiat - Keserwan<br>Waterfront City, Dbayeh - Metn";
           }
 
-          if (lower.includes('contact') || lower.includes('reach') || lower.includes('call') || lower.includes('phone') || lower.includes('number')) {
-            return 'You can reach us at:<br><br><b>+961 76 033 933</b><br><b>davideid2004@icloud.com</b><br>Kaslik, Altavista Center, Lebanon';
+          if (
+            lower.includes("contact") ||
+            lower.includes("reach") ||
+            lower.includes("call") ||
+            lower.includes("phone") ||
+            lower.includes("number")
+          ) {
+            return "You can reach us at:<br><br><b>+961 76 033 933</b><br><b>davideid2004@icloud.com</b><br>Kaslik, Altavista Center, Lebanon";
           }
 
-          if (lower.includes('email') || lower.includes('mail')) {
-            return 'You can email us at <b>davideid2004@icloud.com</b> and we will get back to you as soon as possible.';
+          if (lower.includes("email") || lower.includes("mail")) {
+            return "You can email us at <b>davideid2004@icloud.com</b> and we will get back to you as soon as possible.";
           }
 
-          if (lower.includes('office') || lower.includes('visit') || lower.includes('address')) {
-            return 'Our office is located at:<br><br><b>Kaslik, Altavista Center, Lebanon</b><br><br>Monday - Saturday: 8:00 AM - 7:00 PM<br>Sunday: Closed<br><br>We welcome private consultations.';
+          if (
+            lower.includes("office") ||
+            lower.includes("visit") ||
+            lower.includes("address")
+          ) {
+            return "Our office is located at:<br><br><b>Kaslik, Altavista Center, Lebanon</b><br><br>Monday - Saturday: 8:00 AM - 7:00 PM<br>Sunday: Closed<br><br>We welcome private consultations.";
           }
 
-          if (lower.includes('hours') || lower.includes('open') || lower.includes('working hours') || lower.includes('time') || lower.includes('when')) {
-            return 'We are open:<br><br><b>Monday - Saturday:</b> 8:00 AM - 7:00 PM<br><b>Sunday:</b> Closed';
+          if (
+            lower.includes("hours") ||
+            lower.includes("open") ||
+            lower.includes("working hours") ||
+            lower.includes("time") ||
+            lower.includes("when")
+          ) {
+            return "We are open:<br><br><b>Monday - Saturday:</b> 8:00 AM - 7:00 PM<br><b>Sunday:</b> Closed";
           }
 
-          if (lower.includes('about') || lower.includes('who are you') || lower.includes('company') || lower.includes('eid')) {
-            return '<b>EID Properties & Construction</b> has been a trusted name in Lebanese real estate since <b>1996</b>. With 30+ years of experience, we specialize in luxury property sales, premium construction, investment advisory, and real estate development.';
+          if (
+            lower.includes("about") ||
+            lower.includes("who are you") ||
+            lower.includes("company") ||
+            lower.includes("eid")
+          ) {
+            return "<b>EID Properties & Construction</b> has been a trusted name in Lebanese real estate since <b>1996</b>. With 30+ years of experience, we specialize in luxury property sales, premium construction, investment advisory, and real estate development.";
           }
 
-          if (lower.includes('service') || lower.includes('what do you do') || lower.includes('offer')) {
-            return 'We offer:<br><br><b>Luxury Property Sales</b> - Curated residential and investment listings<br><b>Premium Construction</b> - Quality project execution<br><b>Investment Advisory</b> - Market guidance for buyers and investors<br><b>Real Estate Development</b> - Planning and delivery of refined residences';
+          if (
+            lower.includes("service") ||
+            lower.includes("what do you do") ||
+            lower.includes("offer")
+          ) {
+            return "We offer:<br><br><b>Luxury Property Sales</b> - Curated residential and investment listings<br><b>Premium Construction</b> - Quality project execution<br><b>Investment Advisory</b> - Market guidance for buyers and investors<br><b>Real Estate Development</b> - Planning and delivery of refined residences";
           }
 
-          if (lower.includes('buy') || lower.includes('purchase') || lower.includes('interested')) {
-            return 'We would love to help you find your perfect property. Please contact us at:<br><br><b>+961 76 033 933</b><br><b>davideid2004@icloud.com</b><br><br>You can also fill out the contact form on our website.';
+          if (
+            lower.includes("buy") ||
+            lower.includes("purchase") ||
+            lower.includes("interested")
+          ) {
+            return "We would love to help you find your perfect property. Please contact us at:<br><br><b>+961 76 033 933</b><br><b>davideid2004@icloud.com</b><br><br>You can also fill out the contact form on our website.";
           }
 
-          if (lower.includes('invest') || lower.includes('investment') || lower.includes('return')) {
-            return 'Lebanon\'s Keserwan and Jounieh regions offer strong real estate investment potential. EID Properties provides expert investment advisory to help you make the right decision. Contact us at <b>+961 76 033 933</b> for a private consultation.';
+          if (
+            lower.includes("invest") ||
+            lower.includes("investment") ||
+            lower.includes("return")
+          ) {
+            return "Lebanon's Keserwan and Jounieh regions offer strong real estate investment potential. EID Properties provides expert investment advisory to help you make the right decision. Contact us at <b>+961 76 033 933</b> for a private consultation.";
           }
 
-          if (lower.includes('construction') || lower.includes('build') || lower.includes('building') || lower.includes('project')) {
-            return 'EID Properties & Construction offers premium construction services focused on quality, timelines, and enduring finishes. Contact us at <b>+961 76 033 933</b> to discuss your construction project.';
+          if (
+            lower.includes("construction") ||
+            lower.includes("build") ||
+            lower.includes("building") ||
+            lower.includes("project")
+          ) {
+            return "EID Properties & Construction offers premium construction services focused on quality, timelines, and enduring finishes. Contact us at <b>+961 76 033 933</b> to discuss your construction project.";
           }
 
-          if (lower.includes('whatsapp') || lower.includes('whats app') || lower.includes('message')) {
-            return 'You can contact us on WhatsApp at <b>+961 76 033 933</b>. We respond quickly to inquiries.';
+          if (
+            lower.includes("whatsapp") ||
+            lower.includes("whats app") ||
+            lower.includes("message")
+          ) {
+            return "You can contact us on WhatsApp at <b>+961 76 033 933</b>. We respond quickly to inquiries.";
           }
 
-          if (lower.includes('consultation') || lower.includes('meeting') || lower.includes('appointment')) {
-            return 'We offer private consultations at our office in Kaslik, Altavista Center.<br><br>Call us: <b>+961 76 033 933</b><br>Email: <b>davideid2004@icloud.com</b><br>Monday - Saturday: 8:00 AM - 7:00 PM';
+          if (
+            lower.includes("consultation") ||
+            lower.includes("meeting") ||
+            lower.includes("appointment")
+          ) {
+            return "We offer private consultations at our office in Kaslik, Altavista Center.<br><br>Call us: <b>+961 76 033 933</b><br>Email: <b>davideid2004@icloud.com</b><br>Monday - Saturday: 8:00 AM - 7:00 PM";
           }
 
-          if (lower.includes('since') || lower.includes('experience') || lower.includes('years') || lower.includes('1996') || lower.includes('how long')) {
-            return 'EID Properties & Construction has been operating since <b>1996</b>, with over <b>30 years</b> of trusted real estate expertise in Lebanon.';
+          if (
+            lower.includes("since") ||
+            lower.includes("experience") ||
+            lower.includes("years") ||
+            lower.includes("1996") ||
+            lower.includes("how long")
+          ) {
+            return "EID Properties & Construction has been operating since <b>1996</b>, with over <b>30 years</b> of trusted real estate expertise in Lebanon.";
           }
 
-          if (lower.includes('clients') || lower.includes('customers') || lower.includes('how many')) {
-            return 'We have proudly served over <b>1,000 clients</b> across Lebanon since our founding in 1996.';
+          if (
+            lower.includes("clients") ||
+            lower.includes("customers") ||
+            lower.includes("how many")
+          ) {
+            return "We have proudly served over <b>1,000 clients</b> across Lebanon since our founding in 1996.";
           }
 
-          if (lower.includes('thank') || lower.includes('thanks') || lower.includes('thank you')) {
-            return 'You are most welcome. We are here anytime you need help with properties or services.';
+          if (
+            lower.includes("thank") ||
+            lower.includes("thanks") ||
+            lower.includes("thank you")
+          ) {
+            return "You are most welcome. We are here anytime you need help with properties or services.";
           }
 
-          if (lower.includes('bye') || lower.includes('goodbye') || lower.includes('see you')) {
-            return 'Thank you for contacting EID Properties & Construction. We look forward to assisting you.';
+          if (
+            lower.includes("bye") ||
+            lower.includes("goodbye") ||
+            lower.includes("see you")
+          ) {
+            return "Thank you for contacting EID Properties & Construction. We look forward to assisting you.";
           }
 
-          return 'I can help you with:<br><br>Available Properties<br>Locations & Regions<br>Prices & Budget<br>Our Services<br>Contact Information<br>Office Hours<br>Consultations<br>Construction Projects<br>Investment Advisory<br><br>Please ask me anything about EID Properties & Construction.';
+          return "I can help you with:<br><br>Available Properties<br>Locations & Regions<br>Prices & Budget<br>Our Services<br>Contact Information<br>Office Hours<br>Consultations<br>Construction Projects<br>Investment Advisory<br><br>Please ask me anything about EID Properties & Construction.";
         }
 
         function sendMessage(text) {
@@ -2163,39 +2952,43 @@
             return;
           }
 
-          addMessage(value.replace(/[<>&]/g, (char) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[char])), 'user');
-          chatInput.value = '';
+          addMessage(
+            value.replace(
+              /[<>&]/g,
+              (char) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" })[char],
+            ),
+            "user",
+          );
+          chatInput.value = "";
 
           window.setTimeout(() => {
-            addMessage(getResponse(value), 'bot');
+            addMessage(getResponse(value), "bot");
           }, 250);
         }
 
-        chatToggle.addEventListener('click', () => {
-          const isOpen = chatWindow.classList.contains('chat-open');
-          chatWindow.classList.toggle('hidden', isOpen);
-          chatWindow.classList.toggle('chat-open', !isOpen);
+        chatToggle.addEventListener("click", () => {
+          const isOpen = chatWindow.classList.contains("chat-open");
+          chatWindow.classList.toggle("hidden", isOpen);
+          chatWindow.classList.toggle("chat-open", !isOpen);
 
           if (!isOpen) {
             window.setTimeout(() => chatInput.focus(), 120);
           }
         });
 
-        chatInput.addEventListener('keydown', (event) => {
-          if (event.key === 'Enter') {
+        chatInput.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") {
             event.preventDefault();
             sendMessage(chatInput.value);
           }
         });
 
         suggestions.forEach((button) => {
-          button.addEventListener('click', () => {
-            sendMessage(button.textContent || '');
+          button.addEventListener("click", () => {
+            sendMessage(button.textContent || "");
           });
         });
       });
     </script>
-
-    
   </body>
 </html>
