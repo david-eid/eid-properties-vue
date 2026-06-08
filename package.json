@@ -1,0 +1,20 @@
+{
+  "name": "eid-properties",
+  "version": "1.0.0",
+  "description": "Luxury real estate homepage for EID Properties & Construction.",
+  "scripts": {
+    "build": "tailwindcss -i ./src/css/input.css -o ./src/css/output.css",
+    "watch": "tailwindcss -i ./src/css/input.css -o ./src/css/output.css --watch"
+  },
+  "keywords": [
+    "real-estate",
+    "construction",
+    "tailwindcss"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
+}

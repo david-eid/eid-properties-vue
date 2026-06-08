@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="EID Properties & Construction creates refined real estate, construction, and investment experiences built on trust, value, and enduring quality."
+    />
+    <title>EID Properties & Construction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/css/output.css" />
+  </head>
+  <body class="bg-dark text-white antialiased">
+    <header id="site-header" class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-dark/80 backdrop-blur-xl">
+      <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8" aria-label="Main navigation">
+        <a href="#home" class="font-playfair text-2xl font-bold tracking-wide text-white">
+          EID <span class="text-gold">Properties</span> <span class="text-white/50">& Construction</span>
+        </a>
+
+        <div class="flex items-center gap-3">
+          <div class="hidden items-center gap-8 text-xs font-semibold uppercase tracking-widest text-white/70 lg:flex">
+            <a class="transition hover:text-gold" href="#properties" data-i18n="nav.properties">Properties</a>
+            <a class="transition hover:text-gold" href="#about" data-i18n="nav.about">About</a>
+            <a class="transition hover:text-gold" href="#services" data-i18n="nav.services">Services</a>
+            <a class="transition hover:text-gold" href="#contact" data-i18n="nav.contact">Contact</a>
+          </div>
+          <button id="theme-toggle" class="nav-toggle-btn" type="button">Dark / Light</button>
+          <button id="language-toggle" class="nav-toggle-btn" type="button">AR / EN</button>
+          <button
+            id="menu-toggle"
+            class="flex h-11 w-11 items-center justify-center border border-white/15 text-gold transition hover:border-gold lg:hidden"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <span class="relative h-4 w-5">
+              <span class="menu-line absolute left-0 top-0 h-0.5 w-5 bg-current transition"></span>
+              <span class="menu-line absolute left-0 top-1.5 h-0.5 w-5 bg-current transition"></span>
+              <span class="menu-line absolute left-0 top-3 h-0.5 w-5 bg-current transition"></span>
+            </span>
+          </button>
+        </div>
+      </nav>
+
+      <div id="mobile-menu" class="hidden border-t border-white/10 bg-dark-2 px-5 py-5 lg:hidden">
+        <div class="flex flex-col gap-4 text-sm font-semibold uppercase tracking-widest text-white/75">
+          <a class="mobile-link transition hover:text-gold" href="#properties" data-i18n="nav.properties">Properties</a>
+          <a class="mobile-link transition hover:text-gold" href="#about" data-i18n="nav.about">About</a>
+          <a class="mobile-link transition hover:text-gold" href="#services" data-i18n="nav.services">Services</a>
+          <a class="mobile-link transition hover:text-gold" href="#contact" data-i18n="nav.contact">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="relative flex min-h-screen items-center overflow-hidden pt-24">
+        <div class="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=2200&q=100"
+            alt="Luxury modern villa interior with warm architectural lighting"
+            class="h-full w-full object-cover opacity-45"
+          />
+          <div class="hero-overlay absolute inset-0 bg-gradient-to-r from-dark via-dark/85 to-dark/25"></div>
+        </div>
+
+        <div class="relative mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
+          <div class="max-w-3xl">
+            <p class="section-label" data-i18n="hero.label">EID Properties & Construction</p>
+            <h1 class="font-playfair text-5xl font-bold leading-tight text-white md:text-7xl" data-i18n="hero.title">
+              Where Trust Meets Value
+            </h1>
+            <p class="mt-6 max-w-2xl text-base leading-8 text-white/75 md:text-lg" data-i18n="hero.text">
+              A luxury real estate and construction company crafting premium residences, investment properties, and timeless developments across Lebanon.
+            </p>
+            <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a href="#properties" class="btn-gold text-center" data-i18n="hero.propertiesCta">Explore Signature Properties</a>
+              <a href="#contact" class="btn-outline text-center" data-i18n="hero.contactCta">Private Consultation</a>
+            </div>
+          </div>
+
+          <div class="hidden items-end justify-end lg:flex">
+            <div class="border border-gold/40 bg-dark/70 p-8 backdrop-blur-md">
+              <p class="text-xs font-semibold uppercase tracking-widest text-gold" data-i18n="hero.established">Established</p>
+              <p class="mt-3 font-playfair text-6xl font-bold">1996</p>
+              <p class="mt-4 max-w-xs text-sm leading-7 text-white/65" data-i18n="hero.establishedText">
+                 Three decades of trusted real estate expertise, premium construction quality, and client-focused property guidance.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="border-y border-white/10 bg-dark-2 py-10">
+        <div class="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-5 text-center md:grid-cols-4 lg:px-8">
+          <div class="p-4">
+            <p class="font-playfair text-4xl font-bold text-gold">1996</p>
+            <p class="mt-2 text-xs uppercase tracking-widest text-white/60">Since</p>
+          </div>
+          <div class="p-4">
+            <p class="font-playfair text-4xl font-bold text-gold">7+</p>
+            <p class="mt-2 text-xs uppercase tracking-widest text-white/60">Projects</p>
+          </div>
+          <div class="p-4">
+            <p class="font-playfair text-4xl font-bold text-gold">1000+</p>
+            <p class="mt-2 text-xs uppercase tracking-widest text-white/60">Clients</p>
+          </div>
+          <div class="p-4">
+            <p class="font-playfair text-4xl font-bold text-gold">30+</p>
+            <p class="mt-2 text-xs uppercase tracking-widest text-white/60">Years</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="properties" class="bg-dark px-5 py-24 lg:px-8">
+        <div class="mx-auto max-w-7xl">
+          <div class="mb-12 max-w-3xl">
+            <p class="section-label" data-i18n="properties.label">Featured Properties</p>
+            <h2 class="section-heading" data-i18n="properties.title">Signature properties crafted for prestige, comfort, and long-term value.</h2>
+            <p class="text-white/65" data-i18n="properties.text">Explore elegant homes and investment-ready spaces shaped by location, craftsmanship, and a sharp eye for detail.</p>
+          </div>
+
+          <div class="mb-10 border border-gold/25 bg-dark-2/80 p-5 shadow-2xl shadow-black/20 backdrop-blur-xl md:p-7">
+            <div class="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
+              <label class="block">
+                <span class="mb-3 block text-xs font-semibold uppercase tracking-widest text-gold">Region</span>
+                <select id="region-filter" class="filter-control">
+                  <option value="all">All Regions</option>
+                  <option value="Jounieh District">Jounieh District</option>
+                  <option value="Keserwan">Keserwan</option>
+                  <option value="Metn">Metn</option>
+                  <option value="Beirut">Beirut</option>
+                  <option value="Jbeil">Jbeil</option>
+                  <option value="Batroun">Batroun</option>
+                </select>
+              </label>
+
+              <div class="grid gap-3 md:grid-cols-[0.85fr_1.15fr]">
+                <label class="block">
+                  <span class="mb-3 block text-xs font-semibold uppercase tracking-widest text-gold">Search Location</span>
+                  <input id="location-search" class="filter-control" type="search" placeholder="Search Kaslik, Rabieh, Beirut..." autocomplete="off" />
+                </label>
+                <label class="block">
+                  <span class="mb-3 block text-xs font-semibold uppercase tracking-widest text-gold">Location</span>
+                  <select id="location-filter" class="filter-control"></select>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <nav class="mb-8 flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-widest text-white/55" aria-label="Property breadcrumbs">
+            <a href="#home" class="transition hover:text-gold">Home</a>
+            <span class="text-gold">/</span>
+            <a href="#properties" class="transition hover:text-gold">Properties</a>
+            <span class="text-gold">/</span>
+            <span id="breadcrumb-region">All Regions</span>
+            <span class="text-gold">/</span>
+            <span id="breadcrumb-location">All Locations</span>
+          </nav>
+
+          <div id="properties-grid" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <article class="property-card featured-property-card group overflow-hidden border border-gold bg-dark-2 shadow-2xl shadow-black/30" data-region="Metn" data-location="Dbayeh">
+              <div class="relative overflow-hidden">
+                <img src="./src/images/properties/marina-waterfront-residence.jpg" alt="Marina Waterfront Residence overlooking the waterfront in Dbayeh" class="h-72 w-full object-cover transition duration-500 group-hover:scale-105" />
+                <div class="absolute left-5 top-5 flex flex-wrap gap-3">
+                  <span class="border border-gold bg-dark/85 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-gold backdrop-blur-md">WATERFRONT COLLECTION</span>
+                  <span class="bg-gold px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-dark">FEATURED</span>
+                </div>
+              </div>
+              <div class="p-6">
+                <p class="text-xs uppercase tracking-widest text-gold">Metn / Waterfront City, Dbayeh</p>
+                <h3 class="mt-3 text-2xl font-bold">Marina Waterfront Residence</h3>
+                <div class="mt-5 grid grid-cols-2 gap-3 text-xs uppercase tracking-widest text-white/55">
+                  <p><span class="block text-gold">Region</span> Metn</p>
+                  <p><span class="block text-gold">Location</span> Waterfront City, Dbayeh</p>
+                  <p><span class="block text-gold">Category</span> Apartments</p>
+                  <p><span class="block text-gold">Status</span> For Sale</p>
+                </div>
+                <p class="mt-5 text-gold font-semibold"><span class="text-xs uppercase tracking-widest text-white/55">Price</span><br />$1,600,000</p>
+                <a class="whatsapp-btn mt-5 inline-flex" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Marina%20Waterfront%20Residence" target="_blank" rel="noopener" data-i18n="properties.whatsapp">Contact on WhatsApp</a>
+              </div>
+            </article>
+
+            <article class="property-card group overflow-hidden border border-white/10 bg-dark-2" data-region="Jounieh District" data-location="Kaslik">
+              <img src="./src/images/properties/kaslik-altavista-residence.jpg" alt="Kaslik Altavista Residence luxury coastal apartment exterior" class="h-72 w-full object-cover transition duration-500 group-hover:scale-105" />
+              <div class="p-6">
+                <p class="text-xs uppercase tracking-widest text-gold">Jounieh District / Kaslik</p>
+                <h3 class="mt-3 text-2xl font-bold">Kaslik Altavista Residence</h3>
+                <div class="mt-5 grid grid-cols-2 gap-3 text-xs uppercase tracking-widest text-white/55">
+                  <p><span class="block text-gold">Region</span> Jounieh District</p>
+                  <p><span class="block text-gold">Location</span> Kaslik</p>
+                  <p><span class="block text-gold">Property Type</span> Apartment</p>
+                  <p><span class="block text-gold">Status</span> For Sale</p>
+                </div>
+                <p class="mt-5 text-gold font-semibold"><span class="text-xs uppercase tracking-widest text-white/55">Price</span><br />$250,000</p>
+                <a class="whatsapp-btn mt-5 inline-flex" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Kaslik%20Altavista%20Residence" target="_blank" rel="noopener" data-i18n="properties.whatsapp">Contact on WhatsApp</a>
+              </div>
+            </article>
+
+            <article class="property-card group overflow-hidden border border-white/10 bg-dark-2" data-region="Keserwan" data-location="Adma">
+              <img src="./src/images/properties/adma-hillside-villa.jpg" alt="Dark modern Adma hillside villa with pool and warm lighting" class="h-72 w-full object-cover transition duration-500 group-hover:scale-105" />
+              <div class="p-6">
+                <p class="text-xs uppercase tracking-widest text-gold">Keserwan / Adma</p>
+                <h3 class="mt-3 text-2xl font-bold">Adma Hillside Villa</h3>
+                <div class="mt-5 grid grid-cols-2 gap-3 text-xs uppercase tracking-widest text-white/55">
+                  <p><span class="block text-gold">Region</span> Keserwan</p>
+                  <p><span class="block text-gold">Location</span> Adma</p>
+                  <p><span class="block text-gold">Property Type</span> Villa</p>
+                  <p><span class="block text-gold">Status</span> For Sale</p>
+                </div>
+                <p class="mt-5 text-gold font-semibold"><span class="text-xs uppercase tracking-widest text-white/55">Price</span><br />$900,000</p>
+                <a class="whatsapp-btn mt-5 inline-flex" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Adma%20Hillside%20Villa" target="_blank" rel="noopener" data-i18n="properties.whatsapp">Contact on WhatsApp</a>
+              </div>
+            </article>
+
+            <article class="property-card group overflow-hidden border border-white/10 bg-dark-2" data-region="Jounieh District" data-location="Kfarhbab">
+              <img src="./src/images/properties/kfarhbab-grand-residence.jpg" alt="Kfarhbab Grand Residence with columns and landscaped courtyard" class="h-72 w-full object-cover transition duration-500 group-hover:scale-105" />
+              <div class="p-6">
+                <p class="text-xs uppercase tracking-widest text-gold">Jounieh District / Kfarhbab</p>
+                <h3 class="mt-3 text-2xl font-bold">Kfarhbab Grand Residence</h3>
+                <div class="mt-5 grid grid-cols-2 gap-3 text-xs uppercase tracking-widest text-white/55">
+                  <p><span class="block text-gold">Region</span> Jounieh District</p>
+                  <p><span class="block text-gold">Location</span> Kfarhbab</p>
+                  <p><span class="block text-gold">Property Type</span> Residence</p>
+                  <p><span class="block text-gold">Status</span> For Sale</p>
+                </div>
+                <p class="mt-5 text-gold font-semibold"><span class="text-xs uppercase tracking-widest text-white/55">Price</span><br />$750,000</p>
+                <a class="whatsapp-btn mt-5 inline-flex" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Kfarhbab%20Grand%20Residence" target="_blank" rel="noopener" data-i18n="properties.whatsapp">Contact on WhatsApp</a>
+              </div>
+            </article>
+
+            <article class="property-card group overflow-hidden border border-white/10 bg-dark-2" data-region="Keserwan" data-location="Ghosta">
+              <img src="./src/images/properties/ghosta-contemporary-villa.jpg" alt="Ghosta Contemporary Villa with stone facade and glass balconies" class="h-72 w-full object-cover transition duration-500 group-hover:scale-105" />
+              <div class="p-6">
+                <p class="text-xs uppercase tracking-widest text-gold">Keserwan / Ghosta</p>
+                <h3 class="mt-3 text-2xl font-bold">Ghosta Contemporary Villa</h3>
+                <div class="mt-5 grid grid-cols-2 gap-3 text-xs uppercase tracking-widest text-white/55">
+                  <p><span class="block text-gold">Region</span> Keserwan</p>
+                  <p><span class="block text-gold">Location</span> Ghosta</p>
+                  <p><span class="block text-gold">Property Type</span> Villa</p>
+                  <p><span class="block text-gold">Status</span> For Sale</p>
+                </div>
+                <p class="mt-5 text-gold font-semibold"><span class="text-xs uppercase tracking-widest text-white/55">Price</span><br />Contact for Price</p>
+                <a class="whatsapp-btn mt-5 inline-flex" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Ghosta%20Contemporary%20Villa" target="_blank" rel="noopener" data-i18n="properties.whatsapp">Contact on WhatsApp</a>
+              </div>
+            </article>
+
+            <article class="property-card group overflow-hidden border border-white/10 bg-dark-2" data-region="Keserwan" data-location="Kleiat">
+              <img src="./src/images/properties/kleiat-stone-villa.jpg" alt="Kleiat Stone Villa with traditional Lebanese stone and pool" class="h-72 w-full object-cover transition duration-500 group-hover:scale-105" />
+              <div class="p-6">
+                <p class="text-xs uppercase tracking-widest text-gold">Keserwan / Kleiat</p>
+                <h3 class="mt-3 text-2xl font-bold">Kleiat Stone Villa</h3>
+                <div class="mt-5 grid grid-cols-2 gap-3 text-xs uppercase tracking-widest text-white/55">
+                  <p><span class="block text-gold">Region</span> Keserwan</p>
+                  <p><span class="block text-gold">Location</span> Kleiat</p>
+                  <p><span class="block text-gold">Property Type</span> Villa</p>
+                  <p><span class="block text-gold">Status</span> For Sale</p>
+                </div>
+                <p class="mt-5 text-gold font-semibold"><span class="text-xs uppercase tracking-widest text-white/55">Price</span><br />Contact for Price</p>
+                <a class="whatsapp-btn mt-5 inline-flex" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Kleiat%20Stone%20Villa" target="_blank" rel="noopener" data-i18n="properties.whatsapp">Contact on WhatsApp</a>
+              </div>
+            </article>
+          </div>
+          <p id="no-properties" class="mt-10 hidden border border-white/10 bg-dark-2 p-6 text-center text-sm uppercase tracking-widest text-white/55">No properties match this location.</p>
+        </div>
+      </section>
+
+      <section id="about" class="bg-dark-2 px-5 py-24 lg:px-8">
+        <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:items-center">
+          <div>
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" alt="Luxury commercial architecture facade" class="h-[520px] w-full object-cover" />
+          </div>
+          <div>
+            <p class="section-label" data-i18n="about.label">About Us</p>
+            <h2 class="section-heading" data-i18n="about.title">Built on confidence, delivered with precision.</h2>
+            <p class="leading-8 text-white/70" data-i18n="about.textOne">
+              Since 1996, EID Properties & Construction has connected clients with exceptional real estate opportunities while managing construction standards with clarity, accountability, and refined taste.
+            </p>
+            <p class="mt-5 leading-8 text-white/70" data-i18n="about.textTwo">
+              Our work is guided by trust, transparent advisory, and a commitment to properties that hold practical and emotional value over time.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="bg-dark px-5 py-24 lg:px-8">
+        <div class="mx-auto max-w-7xl">
+          <div class="mb-12 max-w-3xl">
+            <p class="section-label" data-i18n="services.label">Services</p>
+            <h2 class="section-heading" data-i18n="services.title">Real estate expertise from vision to handover.</h2>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div class="border border-white/10 bg-dark-2 p-7">
+              <p class="mb-5 text-3xl text-gold">01</p>
+              <h3 class="text-xl font-bold" data-i18n="services.salesTitle">Luxury Property Sales</h3>
+              <p class="mt-4 text-sm leading-7 text-white/60" data-i18n="services.salesText">Curated residential and investment listings matched to client goals.</p>
+            </div>
+            <div class="border border-white/10 bg-dark-2 p-7">
+              <p class="mb-5 text-3xl text-gold">02</p>
+              <h3 class="text-xl font-bold" data-i18n="services.constructionTitle">Premium Construction</h3>
+              <p class="mt-4 text-sm leading-7 text-white/60" data-i18n="services.constructionText">Project execution focused on quality, timelines, and enduring finishes.</p>
+            </div>
+            <div class="border border-white/10 bg-dark-2 p-7">
+              <p class="mb-5 text-3xl text-gold">03</p>
+              <h3 class="text-xl font-bold" data-i18n="services.investmentTitle">Investment Advisory</h3>
+              <p class="mt-4 text-sm leading-7 text-white/60" data-i18n="services.investmentText">Clear market guidance for buyers, sellers, developers, and investors.</p>
+            </div>
+            <div class="border border-white/10 bg-dark-2 p-7">
+              <p class="mb-5 text-3xl text-gold">04</p>
+              <h3 class="text-xl font-bold" data-i18n="services.developmentTitle">Real Estate Development</h3>
+              <p class="mt-4 text-sm leading-7 text-white/60" data-i18n="services.developmentText">Planning and delivery support for refined residential environments.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="office" class="bg-dark px-5 py-24 lg:px-8">
+        <div class="mx-auto max-w-7xl">
+          <div class="mb-12 max-w-3xl">
+            <p class="section-label" data-i18n="office.label">Visit Our Office</p>
+            <h2 class="section-heading" data-i18n="office.title">Private consultations in the heart of Kaslik.</h2>
+          </div>
+
+          <div class="overflow-hidden border border-gold/25 bg-dark-2/90 shadow-2xl shadow-black/30 backdrop-blur-xl">
+            <div class="grid gap-0 lg:grid-cols-[0.85fr_1.15fr]">
+              <div class="space-y-7 p-7 md:p-10">
+                <div class="flex flex-wrap items-start justify-between gap-4">
+                  <div>
+                    <p class="text-xs font-semibold uppercase tracking-widest text-gold" data-i18n="office.locationLabel">Location</p>
+                    <h3 class="mt-3 font-playfair text-3xl font-bold">EID Properties & Construction</h3>
+                    <p class="mt-3 leading-7 text-white/70" data-i18n="office.address">Kaslik, Altavista Center<br />Lebanon</p>
+                  </div>
+                  <span class="border border-emerald-400/40 bg-emerald-500/15 px-4 py-2 text-xs font-bold uppercase tracking-widest text-emerald-300" data-i18n="office.openNow">Open Now</span>
+                </div>
+
+                <p class="leading-8 text-white/70" data-i18n="office.text">
+                  Located in the heart of Kaslik at Altavista Center, our office welcomes clients for private real estate consultations, construction inquiries, and investment guidance.
+                </p>
+
+                <div class="border border-white/10 bg-dark p-6">
+                  <p class="text-xs font-semibold uppercase tracking-widest text-gold" data-i18n="office.hoursLabel">Opening Hours</p>
+                  <div class="mt-5 space-y-3 text-sm text-white/70">
+                    <p><span class="font-semibold text-gold" data-i18n="office.weekdays">Monday - Saturday:</span> 8:00 AM - 7:00 PM</p>
+                    <p><span class="font-semibold text-gold" data-i18n="office.sunday">Sunday:</span> <span data-i18n="office.closed">Closed</span></p>
+                  </div>
+                </div>
+
+                <a class="btn-gold inline-flex" href="https://www.google.com/maps/search/?api=1&query=Kaslik%2C%20Altavista%20Center%2C%20Lebanon" target="_blank" rel="noopener" data-i18n="office.mapsCta">Open in Maps</a>
+              </div>
+
+              <div class="min-h-[360px] border-t border-white/10 lg:border-l lg:border-t-0">
+                <iframe
+                  title="Google Maps location for Kaslik Altavista Center Lebanon"
+                  src="https://www.google.com/maps?q=Kaslik%2C%20Altavista%20Center%2C%20Lebanon&output=embed"
+                  class="h-[360px] w-full md:h-[460px] lg:h-full"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="bg-dark-2 px-5 py-24 lg:px-8">
+        <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+          <div>
+            <p class="section-label" data-i18n="contact.label">Contact</p>
+            <h2 class="section-heading" data-i18n="contact.title">Start your next property conversation.</h2>
+            <p class="leading-8 text-white/70" data-i18n="contact.text">Share your vision with us, and our team will guide you toward the right property, project, or investment opportunity.</p>
+            <div class="mt-8 space-y-4 text-sm text-white/65">
+              <p><span class="font-semibold text-gold">Email:</span> davideid2004@icloud.com</p>
+              <p><span class="font-semibold text-gold">Phone:</span> +961 76 033 933</p>
+              <p><span class="font-semibold text-gold">Office:</span> Kaslik , Altavista Center</p>
+            </div>
+          </div>
+
+          <form id="contact-form" class="grid gap-5 border border-white/10 bg-dark p-6 md:p-8">
+            <div class="grid gap-5 md:grid-cols-2">
+              <label class="block">
+                <span class="mb-2 block text-xs uppercase tracking-widest text-white/55" data-i18n="form.name">Name</span>
+                <input required type="text" name="name" class="w-full border border-white/10 bg-dark-2 px-4 py-3 text-white outline-none transition focus:border-gold" />
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-xs uppercase tracking-widest text-white/55" data-i18n="form.email">Email</span>
+                <input required type="email" name="email" class="w-full border border-white/10 bg-dark-2 px-4 py-3 text-white outline-none transition focus:border-gold" />
+              </label>
+            </div>
+            <label class="block">
+              <span class="mb-2 block text-xs uppercase tracking-widest text-white/55" data-i18n="form.interest">Interest</span>
+              <select name="interest" class="w-full border border-white/10 bg-dark-2 px-4 py-3 text-white outline-none transition focus:border-gold">
+                <option data-i18n="form.buying">Buying a property</option>
+                <option data-i18n="form.selling">Selling a property</option>
+                <option data-i18n="form.construction">Construction project</option>
+                <option data-i18n="form.investment">Investment consultation</option>
+              </select>
+            </label>
+            <label class="block">
+              <span class="mb-2 block text-xs uppercase tracking-widest text-white/55" data-i18n="form.message">Message</span>
+              <textarea required name="message" rows="5" class="w-full resize-none border border-white/10 bg-dark-2 px-4 py-3 text-white outline-none transition focus:border-gold"></textarea>
+            </label>
+            <button type="submit" class="btn-gold justify-self-start" data-i18n="form.submit">Send Message</button>
+            <p id="form-status" class="hidden text-sm text-gold" role="status"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-white/10 bg-dark px-5 py-10 lg:px-8">
+      <div class="mx-auto flex max-w-7xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        <div>
+          <p class="font-playfair text-2xl font-bold">EID <span class="text-gold">Properties</span></p>
+          <p class="mt-2 text-sm text-white/50" data-i18n="footer.tagline">Premium real estate, construction, and investment guidance since 1996.</p>
+        </div>
+        <p class="text-sm text-white/45">&copy; <span id="year"></span> <span data-i18n="footer.rights">EID Properties & Construction. All rights reserved.</span></p>
+      </div>
+    </footer>
+
+    <script src="./src/js/main.js"></script>
+  </body>
+</html>
