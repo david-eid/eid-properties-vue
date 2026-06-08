@@ -14,7 +14,903 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
     <link rel="stylesheet" href="./src/css/output.css" />
+    <style>
+      #view-all-btn {
+        border: 1px solid #C9A84C;
+        color: #C9A84C;
+        background: transparent;
+        padding: 16px 52px;
+        font-family: 'Playfair Display', serif;
+        font-size: 12px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: all 400ms cubic-bezier(0.16,1,0.3,1);
+      }
+
+      #view-all-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+        transform: skewX(-20deg);
+        transition: left 600ms cubic-bezier(0.16,1,0.3,1);
+      }
+
+      #view-all-btn:hover::before {
+        left: 150%;
+      }
+
+      #view-all-btn:hover {
+        background: rgba(201,168,76,0.07);
+      }
+
+      #view-all-btn:hover #view-all-arrow {
+        transform: translateY(4px);
+      }
+
+      .all-prop-row {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        border: 1px solid rgba(201,168,76,0.15);
+        border-left: 3px solid transparent;
+        background: #111111;
+        margin-bottom: 2px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: border-left-color 400ms ease, box-shadow 400ms ease, opacity 600ms cubic-bezier(0.16,1,0.3,1), transform 600ms cubic-bezier(0.16,1,0.3,1);
+      }
+
+      .all-prop-row.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .all-prop-row:hover {
+        border-left-color: #C9A84C;
+        box-shadow: -4px 0 30px rgba(201,168,76,0.08);
+      }
+
+      .all-prop-row img {
+        width: 280px;
+        min-width: 280px;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+        overflow: hidden;
+        transition: transform 600ms cubic-bezier(0.16,1,0.3,1);
+      }
+
+      .all-prop-row:hover img {
+        transform: scale(1.04);
+      }
+
+      .all-prop-details {
+        flex: 1;
+        padding: 28px 32px;
+      }
+
+      .all-prop-region {
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #C9A84C;
+        margin-bottom: 8px;
+      }
+
+      .all-prop-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 16px;
+      }
+
+      .all-prop-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .all-prop-meta span {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: rgba(255,255,255,0.45);
+      }
+
+      .all-prop-meta span b {
+        display: block;
+        color: #C9A84C;
+        margin-bottom: 3px;
+        font-weight: 600;
+      }
+
+      .all-prop-price {
+        margin-top: 16px;
+        font-family: 'Playfair Display', serif;
+        font-size: 18px;
+        color: #C9A84C;
+        font-weight: 600;
+      }
+
+      .all-prop-whatsapp {
+        margin-right: 32px;
+        white-space: nowrap;
+        border: 1px solid #C9A84C;
+        color: #C9A84C;
+        padding: 12px 24px;
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all 400ms cubic-bezier(0.16,1,0.3,1);
+        flex-shrink: 0;
+      }
+
+      .all-prop-whatsapp:hover {
+        background: #C9A84C;
+        color: #080808;
+      }
+
+      @media (max-width: 768px) {
+        .all-prop-row {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .all-prop-row img {
+          width: 100%;
+          min-width: unset;
+          height: 220px;
+        }
+
+        .all-prop-whatsapp {
+          margin: 0 24px 24px 24px;
+          text-align: center;
+          display: block;
+        }
+      }
+    </style>
+    <style>
+      @property --angle {
+        syntax: '<angle>';
+        initial-value: 0deg;
+        inherits: false;
+      }
+
+      :root {
+        --eid-gold: #C9A84C;
+        --eid-gold-light: #E8C97A;
+        --eid-ease: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      #cursor-dot,
+      #cursor-ring {
+        position: fixed;
+        left: 0;
+        top: 0;
+        pointer-events: none;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 99999;
+        opacity: 0;
+        transition: opacity 250ms ease, transform 300ms var(--eid-ease), background-color 300ms ease;
+        will-change: transform;
+      }
+
+      #cursor-dot {
+        width: 16px;
+        height: 16px;
+        border: 1.5px solid var(--eid-gold);
+      }
+
+      #cursor-ring {
+        width: 48px;
+        height: 48px;
+        border: 1px solid rgba(201, 168, 76, 0.35);
+      }
+
+      body.cursor-active #cursor-dot,
+      body.cursor-active #cursor-ring {
+        opacity: 1;
+      }
+
+      body.cursor-hover #cursor-dot {
+        background-color: rgba(201, 168, 76, 0.2);
+        transform: translate(-50%, -50%) scale(2.5);
+      }
+
+      body.cursor-hover #cursor-ring {
+        transform: translate(-50%, -50%) scale(1.5);
+      }
+
+      #intro-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 99990;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      #intro-top,
+      #intro-bottom {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: #080808;
+        transition: transform 700ms cubic-bezier(0.76, 0, 0.24, 1);
+      }
+
+      #intro-top {
+        top: 0;
+      }
+
+      #intro-bottom {
+        bottom: 0;
+      }
+
+      #intro-overlay.intro-split #intro-top {
+        transform: translateY(-100%);
+      }
+
+      #intro-overlay.intro-split #intro-bottom {
+        transform: translateY(100%);
+      }
+
+      #intro-text {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(2rem, 6vw, 5rem);
+        color: var(--eid-gold);
+        letter-spacing: 0.15em;
+        opacity: 0;
+        transition: opacity 600ms var(--eid-ease);
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      #intro-overlay.text-in #intro-text {
+        opacity: 1;
+      }
+
+      #intro-overlay.text-out #intro-text {
+        opacity: 0;
+        transition-duration: 400ms;
+      }
+
+      #scroll-bar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 99998;
+        width: 0%;
+        height: 2px;
+        background: linear-gradient(to right, var(--eid-gold), var(--eid-gold-light));
+        transition: width 50ms linear;
+      }
+
+      #grain {
+        position: fixed;
+        inset: 0;
+        z-index: 9997;
+        pointer-events: none;
+        opacity: 0.03;
+      }
+
+      #home > .absolute.inset-0 > img {
+        animation: kenBurns 16s ease-in-out infinite alternate;
+        transform-origin: center;
+      }
+
+      #home h1 .hero-word {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 700ms var(--eid-ease), transform 700ms var(--eid-ease);
+      }
+
+      #home .hero-cinematic-subtext,
+      #home .hero-cinematic-cta {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 700ms var(--eid-ease), transform 700ms var(--eid-ease);
+      }
+
+      #home .hero-cinematic-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      #home .border.border-gold\/40 {
+        animation: goldPulse 3s ease-in-out infinite;
+      }
+
+      .stats-line {
+        position: absolute;
+        right: 0;
+        top: 24%;
+        width: 1px;
+        height: 52%;
+        background: linear-gradient(to bottom, transparent, rgba(201, 168, 76, 0.65), transparent);
+        opacity: 0;
+        transform: scaleY(0);
+        transition: opacity 700ms var(--eid-ease), transform 700ms var(--eid-ease);
+      }
+
+      .stats-line.line-visible {
+        opacity: 1;
+        transform: scaleY(1);
+      }
+
+      .property-card {
+        position: relative;
+      }
+
+      .property-card.cinematic-card {
+        opacity: 0;
+        transform: translateY(35px);
+        transition: opacity 700ms var(--eid-ease), transform 700ms var(--eid-ease), box-shadow 500ms var(--eid-ease), border-color 500ms var(--eid-ease);
+      }
+
+      .property-card.cinematic-card.card-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .property-card img {
+        transition: transform 600ms var(--eid-ease), opacity 500ms ease;
+      }
+
+      .property-card:hover img {
+        transform: scale(1.07);
+      }
+
+      .card-overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 18rem;
+        background: linear-gradient(to top, rgba(201, 168, 76, 0.18) 0%, transparent 65%);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 500ms ease;
+        z-index: 1;
+      }
+
+      .property-card:hover .card-overlay {
+        opacity: 1;
+      }
+
+      .property-card .absolute.left-5.top-5 {
+        z-index: 2;
+      }
+
+      .featured-property-card {
+        position: relative;
+        isolation: isolate;
+      }
+
+      .featured-property-card::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        z-index: -1;
+        padding: 1px;
+        background: conic-gradient(from var(--angle), transparent 20%, var(--eid-gold) 40%, var(--eid-gold-light) 50%, var(--eid-gold) 60%, transparent 80%);
+        animation: rotateBorder 3s linear infinite;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+      }
+
+      .whatsapp-btn:hover {
+        animation: whatsappPulse 650ms var(--eid-ease);
+      }
+
+      .section-label.cinematic-reveal-label {
+        opacity: 0;
+        letter-spacing: 0.05em;
+        transition: opacity 800ms var(--eid-ease), letter-spacing 800ms var(--eid-ease);
+      }
+
+      .section-label.cinematic-reveal-label.reveal-visible {
+        opacity: 1;
+        letter-spacing: 0.2em;
+      }
+
+      .section-heading.cinematic-heading {
+        opacity: 0;
+        transform: translateY(25px);
+        transition: opacity 600ms var(--eid-ease), transform 600ms var(--eid-ease);
+      }
+
+      .section-heading.cinematic-heading.reveal-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .heading-line {
+        width: 0;
+        height: 2px;
+        margin-bottom: 16px;
+        background: var(--eid-gold);
+        transition: width 300ms var(--eid-ease);
+      }
+
+      .heading-line.line-visible {
+        width: 60px;
+      }
+
+      .cinematic-paragraph {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 600ms var(--eid-ease), transform 600ms var(--eid-ease);
+      }
+
+      .cinematic-paragraph.reveal-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      #about .about-text-frame {
+        position: relative;
+      }
+
+      #about .about-line {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 2px;
+        height: 0;
+        background: linear-gradient(to bottom, var(--eid-gold), transparent);
+        transition: height 1000ms var(--eid-ease);
+      }
+
+      [dir="rtl"] #about .about-line {
+        left: auto;
+        right: 0;
+      }
+
+      #about .about-line.line-visible {
+        height: 100%;
+      }
+
+      #services .border.border-white\/10.bg-dark-2.p-7 {
+        position: relative;
+        overflow: hidden;
+        transition: transform 500ms var(--eid-ease), box-shadow 500ms var(--eid-ease), border-color 500ms var(--eid-ease);
+      }
+
+      #services .border.border-white\/10.bg-dark-2.p-7:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 80px rgba(201, 168, 76, 0.1);
+      }
+
+      .ghost-number {
+        position: absolute;
+        top: -20px;
+        right: -10px;
+        font-family: 'Playfair Display', serif;
+        font-size: 120px;
+        line-height: 1;
+        color: var(--eid-gold);
+        opacity: 0.04;
+        pointer-events: none;
+        transition: transform 500ms var(--eid-ease);
+      }
+
+      [dir="rtl"] .ghost-number {
+        right: auto;
+        left: -10px;
+      }
+
+      #services .border.border-white\/10.bg-dark-2.p-7:hover .ghost-number {
+        transform: translateX(8px);
+      }
+
+      #site-header.nav-scrolled {
+        background: rgba(8, 8, 8, 0.97) !important;
+        backdrop-filter: blur(28px) !important;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.25) !important;
+        transition: all 400ms ease;
+      }
+
+      .light-mode #site-header.nav-scrolled {
+        background: rgba(251, 250, 246, 0.97) !important;
+      }
+
+      #site-header .hidden.lg\:flex a {
+        position: relative;
+        overflow: hidden;
+      }
+
+      #site-header .hidden.lg\:flex a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 100%;
+        height: 1px;
+        background: var(--eid-gold);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 400ms var(--eid-ease);
+      }
+
+      #site-header .hidden.lg\:flex a:hover::after {
+        transform: scaleX(1);
+      }
+
+      #contact-form input,
+      #contact-form select,
+      #contact-form textarea {
+        border: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+        background: transparent !important;
+        padding-left: 0 !important;
+        transition: border-bottom-color 400ms ease;
+      }
+
+      #contact-form input:focus,
+      #contact-form select:focus,
+      #contact-form textarea:focus {
+        border-bottom-color: var(--eid-gold) !important;
+        box-shadow: none !important;
+      }
+
+      #contact-form select option {
+        background: #111111;
+        color: #ffffff;
+      }
+
+      .light-mode #contact-form select option {
+        background: #fffdf7;
+        color: #0a0a0a;
+      }
+
+      #contact-form span {
+        transition: transform 300ms ease, color 300ms ease;
+      }
+
+      #contact-form span.label-active {
+        display: block;
+        transform: translateY(-4px);
+        color: var(--eid-gold);
+      }
+
+      #contact-form button[type="submit"] {
+        position: relative;
+        overflow: hidden;
+      }
+
+      #contact-form button[type="submit"]::before {
+        content: "";
+        position: absolute;
+        left: -100%;
+        top: 0;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+        transform: skewX(-20deg);
+        transition: left 600ms var(--eid-ease);
+      }
+
+      #contact-form button[type="submit"]:hover::before {
+        left: 150%;
+      }
+
+      footer {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer-line {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 1px;
+        background: linear-gradient(to right, var(--eid-gold), transparent);
+        transition: width 1000ms var(--eid-ease);
+      }
+
+      .footer-line.line-visible {
+        width: 100%;
+      }
+
+      footer .font-playfair:hover {
+        text-shadow: 0 0 40px rgba(201, 168, 76, 0.8);
+        transition: text-shadow 400ms ease;
+      }
+
+      #office .overflow-hidden.border {
+        position: relative;
+        isolation: isolate;
+      }
+
+      #office .office-glow {
+        position: absolute;
+        inset: -1px;
+        z-index: 0;
+        border-radius: inherit;
+        background: conic-gradient(from var(--angle), transparent 85%, var(--eid-gold) 90%, var(--eid-gold-light) 93%, var(--eid-gold) 96%, transparent 100%);
+        animation: rotateBorder 4s linear infinite;
+        pointer-events: none;
+      }
+
+      #office .office-glow + * {
+        position: relative;
+        z-index: 1;
+      }
+
+      @keyframes kenBurns {
+        from {
+          transform: scale(1);
+        }
+
+        to {
+          transform: scale(1.08);
+        }
+      }
+
+      @keyframes goldPulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 transparent;
+        }
+
+        50% {
+          box-shadow: 0 0 30px rgba(201, 168, 76, 0.3), 0 0 60px rgba(201, 168, 76, 0.1);
+        }
+      }
+
+      @keyframes rotateBorder {
+        to {
+          --angle: 360deg;
+        }
+      }
+
+      @keyframes whatsappPulse {
+        from {
+          box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4);
+        }
+
+        to {
+          box-shadow: 0 0 0 12px rgba(201, 168, 76, 0);
+        }
+      }
+
+      @media (max-width: 768px) {
+        #cursor-dot,
+        #cursor-ring {
+          display: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 1ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 1ms !important;
+        }
+
+        #intro-overlay {
+          display: none;
+        }
+      }
+    </style>
+    <style>
+      #chatbot-container,
+      #chat-window {
+        z-index: 99980 !important;
+      }
+
+      #chatbot-container {
+        position: fixed !important;
+        right: 1.5rem !important;
+        bottom: 1.5rem !important;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+      }
+
+      #chat-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 64px !important;
+        height: 64px !important;
+        border-radius: 9999px !important;
+        border: 1px solid rgba(201, 168, 76, 0.65);
+        background: #C9A84C !important;
+        color: #080808;
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35), 0 0 26px rgba(201, 168, 76, 0.26);
+        cursor: pointer;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+
+      #chat-toggle svg {
+        width: 28px;
+        height: 28px;
+        display: block;
+      }
+
+      #chat-toggle:hover {
+        background: #E8C97A !important;
+        transform: translateY(-2px);
+      }
+
+      #chat-window {
+        position: fixed !important;
+        right: 1.5rem !important;
+        bottom: 6.25rem !important;
+        width: 24rem !important;
+        height: 550px !important;
+        max-height: calc(100vh - 7.5rem) !important;
+        background: rgba(10, 10, 10, 0.96) !important;
+        border: 1px solid rgba(201, 168, 76, 0.32) !important;
+        color: #ffffff;
+        backdrop-filter: blur(24px);
+        overflow: hidden !important;
+        flex-direction: column;
+      }
+
+      #chat-window.chat-open {
+        display: flex !important;
+        animation: chatOpen 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      #chat-window > div:first-child {
+        flex: 0 0 auto;
+        background: linear-gradient(135deg, #111111, #1f1a0f) !important;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.25);
+      }
+
+      #chat-messages {
+        height: auto !important;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto !important;
+        padding: 1rem !important;
+        scroll-behavior: smooth;
+        scrollbar-width: thin;
+        scrollbar-color: #C9A84C rgba(255, 255, 255, 0.08);
+      }
+
+      #chat-messages::-webkit-scrollbar {
+        width: 7px;
+      }
+
+      #chat-messages::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      #chat-messages::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, #C9A84C, #806a32);
+        border-radius: 999px;
+      }
+
+      #chat-window > div:last-child {
+        flex: 0 0 auto;
+        border-top: 1px solid rgba(201, 168, 76, 0.18) !important;
+        background: rgba(8, 8, 8, 0.92);
+      }
+
+      .chat-bubble {
+        max-width: 88%;
+        padding: 12px 14px;
+        border-radius: 14px;
+        font-size: 13px;
+        line-height: 1.65;
+      }
+
+      .chat-bot {
+        width: fit-content;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(255, 255, 255, 0.86);
+      }
+
+      .chat-user {
+        margin-left: auto;
+        background: #C9A84C;
+        color: #080808;
+        font-weight: 600;
+      }
+
+      #chat-messages > .flex {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px !important;
+        margin-top: 14px !important;
+      }
+
+      .chat-suggestion {
+        width: 100%;
+        border: 1px solid rgba(201, 168, 76, 0.28);
+        border-radius: 12px !important;
+        background: linear-gradient(135deg, rgba(201, 168, 76, 0.14), rgba(255, 255, 255, 0.035)) !important;
+        color: #E8C97A;
+        padding: 11px 12px !important;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        line-height: 1.2;
+        text-align: center;
+        text-transform: uppercase;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .chat-suggestion:hover {
+        border-color: #C9A84C;
+        background: linear-gradient(135deg, rgba(201, 168, 76, 0.28), rgba(255, 255, 255, 0.06)) !important;
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22), 0 0 18px rgba(201, 168, 76, 0.12);
+      }
+
+      #chat-input {
+        background: rgba(255, 255, 255, 0.06) !important;
+        border: 1px solid rgba(201, 168, 76, 0.22) !important;
+        color: #ffffff;
+        outline: none;
+      }
+
+      #chat-input:focus {
+        border-color: #C9A84C !important;
+        box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.24);
+      }
+
+      @keyframes chatOpen {
+        from {
+          opacity: 0;
+          transform: translateY(16px) scale(0.98);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @media (max-width: 768px) {
+        #chatbot-container {
+          right: 1rem !important;
+          bottom: 1rem !important;
+        }
+
+        #chat-window {
+          right: 1rem !important;
+          bottom: 6rem !important;
+          width: calc(100vw - 2rem) !important;
+          height: min(550px, calc(100vh - 8rem)) !important;
+        }
+      }
+    </style>
   </head>
   <body class="bg-dark text-white antialiased">
     <header id="site-header" class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-dark/80 backdrop-blur-xl">
@@ -267,6 +1163,112 @@
               </div>
             </article>
           </div>
+
+          <div class="mt-16 flex justify-center" id="view-all-wrapper">
+            <button id="view-all-btn" type="button">
+              <span id="view-all-label">View All Properties</span>
+              <span id="view-all-arrow" style="margin-left:12px; display:inline-block; transition: transform 400ms cubic-bezier(0.16,1,0.3,1);">&darr;</span>
+            </button>
+          </div>
+
+          <div id="all-properties-panel" style="max-height:0; overflow:hidden; opacity:0; transition: max-height 900ms cubic-bezier(0.16,1,0.3,1), opacity 600ms ease; margin-top:0;">
+            <div class="all-prop-row" data-index="0">
+              <img src="./src/images/properties/marina-waterfront-residence.jpg" alt="Marina Waterfront Residence" />
+              <div class="all-prop-details">
+                <p class="all-prop-region">Metn / Waterfront City, Dbayeh</p>
+                <h3 class="all-prop-title">Marina Waterfront Residence</h3>
+                <div class="all-prop-meta">
+                  <span><b>Region</b> Metn</span>
+                  <span><b>Location</b> Waterfront City, Dbayeh</span>
+                  <span><b>Category</b> Apartments</span>
+                  <span><b>Status</b> For Sale</span>
+                </div>
+                <p class="all-prop-price">$1,600,000</p>
+              </div>
+              <a class="all-prop-whatsapp" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Marina%20Waterfront%20Residence" target="_blank" rel="noopener">Contact on WhatsApp</a>
+            </div>
+
+            <div class="all-prop-row" data-index="1">
+              <img src="./src/images/properties/kaslik-altavista-residence.jpg" alt="Kaslik Altavista Residence" />
+              <div class="all-prop-details">
+                <p class="all-prop-region">Jounieh District / Kaslik</p>
+                <h3 class="all-prop-title">Kaslik Altavista Residence</h3>
+                <div class="all-prop-meta">
+                  <span><b>Region</b> Jounieh District</span>
+                  <span><b>Location</b> Kaslik</span>
+                  <span><b>Category</b> Apartment</span>
+                  <span><b>Status</b> For Sale</span>
+                </div>
+                <p class="all-prop-price">$250,000</p>
+              </div>
+              <a class="all-prop-whatsapp" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Kaslik%20Altavista%20Residence" target="_blank" rel="noopener">Contact on WhatsApp</a>
+            </div>
+
+            <div class="all-prop-row" data-index="2">
+              <img src="./src/images/properties/adma-hillside-villa.jpg" alt="Adma Hillside Villa" />
+              <div class="all-prop-details">
+                <p class="all-prop-region">Keserwan / Adma</p>
+                <h3 class="all-prop-title">Adma Hillside Villa</h3>
+                <div class="all-prop-meta">
+                  <span><b>Region</b> Keserwan</span>
+                  <span><b>Location</b> Adma</span>
+                  <span><b>Category</b> Villa</span>
+                  <span><b>Status</b> For Sale</span>
+                </div>
+                <p class="all-prop-price">$900,000</p>
+              </div>
+              <a class="all-prop-whatsapp" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Adma%20Hillside%20Villa" target="_blank" rel="noopener">Contact on WhatsApp</a>
+            </div>
+
+            <div class="all-prop-row" data-index="3">
+              <img src="./src/images/properties/kfarhbab-grand-residence.jpg" alt="Kfarhbab Grand Residence" />
+              <div class="all-prop-details">
+                <p class="all-prop-region">Jounieh District / Kfarhbab</p>
+                <h3 class="all-prop-title">Kfarhbab Grand Residence</h3>
+                <div class="all-prop-meta">
+                  <span><b>Region</b> Jounieh District</span>
+                  <span><b>Location</b> Kfarhbab</span>
+                  <span><b>Category</b> Residence</span>
+                  <span><b>Status</b> For Sale</span>
+                </div>
+                <p class="all-prop-price">$750,000</p>
+              </div>
+              <a class="all-prop-whatsapp" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Kfarhbab%20Grand%20Residence" target="_blank" rel="noopener">Contact on WhatsApp</a>
+            </div>
+
+            <div class="all-prop-row" data-index="4">
+              <img src="./src/images/properties/ghosta-contemporary-villa.jpg" alt="Ghosta Contemporary Villa" />
+              <div class="all-prop-details">
+                <p class="all-prop-region">Keserwan / Ghosta</p>
+                <h3 class="all-prop-title">Ghosta Contemporary Villa</h3>
+                <div class="all-prop-meta">
+                  <span><b>Region</b> Keserwan</span>
+                  <span><b>Location</b> Ghosta</span>
+                  <span><b>Category</b> Villa</span>
+                  <span><b>Status</b> For Sale</span>
+                </div>
+                <p class="all-prop-price">Contact for Price</p>
+              </div>
+              <a class="all-prop-whatsapp" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Ghosta%20Contemporary%20Villa" target="_blank" rel="noopener">Contact on WhatsApp</a>
+            </div>
+
+            <div class="all-prop-row" data-index="5">
+              <img src="./src/images/properties/kleiat-stone-villa.jpg" alt="Kleiat Stone Villa" />
+              <div class="all-prop-details">
+                <p class="all-prop-region">Keserwan / Kleiat</p>
+                <h3 class="all-prop-title">Kleiat Stone Villa</h3>
+                <div class="all-prop-meta">
+                  <span><b>Region</b> Keserwan</span>
+                  <span><b>Location</b> Kleiat</span>
+                  <span><b>Category</b> Villa</span>
+                  <span><b>Status</b> For Sale</span>
+                </div>
+                <p class="all-prop-price">Contact for Price</p>
+              </div>
+              <a class="all-prop-whatsapp" href="https://wa.me/96176033933?text=Hello%20EID%20Properties,%20I%20am%20interested%20in%20Kleiat%20Stone%20Villa" target="_blank" rel="noopener">Contact on WhatsApp</a>
+            </div>
+          </div>
+
           <p id="no-properties" class="mt-10 hidden border border-white/10 bg-dark-2 p-6 text-center text-sm uppercase tracking-widest text-white/55">No properties match this location.</p>
         </div>
       </section>
@@ -423,6 +1425,777 @@
       </div>
     </footer>
 
+    
+            <div id="chatbot-container"
+                class="fixed bottom-24 right-6 z-50">
+
+                <button
+                    id="chat-toggle"
+                    class="
+                    w-16
+                    h-16
+                    rounded-full
+                    bg-[#8B6B47]
+                    text-white
+                    shadow-xl
+                    hover:bg-[#6F5337]
+                    transition">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 17 0Z" />
+                      <path d="M8 10h8" />
+                      <path d="M8 14h5" />
+                    </svg>
+                    <span class="sr-only">Open chat</span>
+
+                </button>
+
+            </div>
+
+            <!--Chat window-->
+            <div
+                id="chat-window"
+                class="
+                    hidden
+                    fixed
+                    bottom-44
+                    right-6
+                    w-96
+                    h-[550px]
+                    bg-[var(--bg-card)]
+                    border
+                    border-[var(--border)]
+                    rounded-3xl
+                    shadow-2xl
+                    overflow-hidden
+                    z-50">
+
+                <div
+                    class="
+                    bg-[var(--accent)]
+                    text-white
+                    p-5">
+
+                    <h3 class="font-semibold">
+                        EID Assistant
+                    </h3>
+
+                    <p class="text-sm opacity-80">
+                        Ask us anything about properties
+                    </p>
+
+                </div>
+
+                <div
+                    id="chat-messages"
+                    class="
+                    h-[420px]
+                    overflow-y-auto
+                    p-4
+                    space-y-4">
+
+                    <div
+                        class="
+                        bg-[var(--bg-muted)]
+                        p-3
+                        rounded-xl
+                        w-fit">
+
+                        Hi 👋 How can I help you today?
+
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 mt-3">
+
+                        <button
+                            class="chat-suggestion px-3 py-2 rounded-lg bg-[var(--bg-muted)]">
+                            View Listings
+                        </button>
+
+                        <button
+                            class="chat-suggestion px-3 py-2 rounded-lg bg-[var(--bg-muted)]">
+                            Price Range
+                        </button>
+
+                        <button
+                            class="chat-suggestion px-3 py-2 rounded-lg bg-[var(--bg-muted)]">
+                            Locations
+                        </button>
+
+                        <button
+                            class="chat-suggestion px-3 py-2 rounded-lg bg-[var(--bg-muted)]">
+                            Contact Team
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="p-4 border-t border-[var(--border)]">
+
+                    <input
+                        id="chat-input"
+                        type="text"
+                        placeholder="Type your message..."
+                        class="
+                        w-full
+                        p-3
+                        rounded-xl
+                        border
+                        border-[var(--border)]
+                        bg-[var(--bg)]">
+
+                </div>
+
+            </div>
+    
+
     <script src="./src/js/main.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (noMotion) {
+          return;
+        }
+
+        const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+        const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+        let introComplete = false;
+        const queuedRevealStarts = [];
+
+        const runAfterIntro = (callback) => {
+          if (introComplete) {
+            callback();
+            return;
+          }
+
+          queuedRevealStarts.push(callback);
+        };
+
+        const createCursor = () => {
+          if (window.matchMedia('(max-width: 768px)').matches) {
+            return;
+          }
+
+          const dot = document.createElement('div');
+          const ring = document.createElement('div');
+          dot.id = 'cursor-dot';
+          ring.id = 'cursor-ring';
+          document.body.append(dot, ring);
+
+          let mouseX = window.innerWidth / 2;
+          let mouseY = window.innerHeight / 2;
+          let ringX = mouseX;
+          let ringY = mouseY;
+
+          window.addEventListener('mousemove', (event) => {
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+            dot.style.left = `${mouseX}px`;
+            dot.style.top = `${mouseY}px`;
+            document.body.classList.add('cursor-active');
+          });
+
+          document.addEventListener('mouseover', (event) => {
+            if (event.target.closest('a, button, .btn-gold, .whatsapp-btn')) {
+              document.body.classList.add('cursor-hover');
+            }
+          });
+
+          document.addEventListener('mouseout', (event) => {
+            if (event.target.closest('a, button, .btn-gold, .whatsapp-btn')) {
+              document.body.classList.remove('cursor-hover');
+            }
+          });
+
+          const animateRing = () => {
+            ringX += (mouseX - ringX) * 0.08;
+            ringY += (mouseY - ringY) * 0.08;
+            ring.style.left = `${ringX}px`;
+            ring.style.top = `${ringY}px`;
+            window.requestAnimationFrame(animateRing);
+          };
+
+          animateRing();
+        };
+
+        const createIntro = () => {
+          const overlay = document.createElement('div');
+          overlay.id = 'intro-overlay';
+          overlay.innerHTML = '<div id="intro-top"></div><div id="intro-bottom"></div><div id="intro-text">EID Properties</div>';
+          document.body.appendChild(overlay);
+
+          window.setTimeout(() => overlay.classList.add('text-in'), 300);
+          window.setTimeout(() => overlay.classList.add('text-out'), 1400);
+          window.setTimeout(() => overlay.classList.add('intro-split'), 1800);
+          window.setTimeout(() => {
+            overlay.remove();
+            introComplete = true;
+            queuedRevealStarts.splice(0).forEach((callback) => callback());
+          }, 2500);
+        };
+
+        const createScrollBar = () => {
+          const scrollBar = document.createElement('div');
+          scrollBar.id = 'scroll-bar';
+          document.body.appendChild(scrollBar);
+
+          const updateScrollBar = () => {
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+            scrollBar.style.width = `${progress}%`;
+          };
+
+          updateScrollBar();
+          window.addEventListener('scroll', updateScrollBar, { passive: true });
+          window.addEventListener('resize', updateScrollBar);
+        };
+
+        const createGrain = () => {
+          const grain = document.createElement('div');
+          grain.id = 'grain';
+          document.body.appendChild(grain);
+
+          const setGrain = () => {
+            const frequency = (0.62 + Math.random() * 0.06).toFixed(3);
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="${frequency}" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#noise)"/></svg>`;
+            grain.style.backgroundImage = `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
+          };
+
+          setGrain();
+          window.setInterval(setGrain, 120);
+        };
+
+        const animateHero = () => {
+          const heroTitle = document.querySelector('#home h1');
+          const heroText = document.querySelector('#home h1 + p');
+          const heroButtons = document.querySelectorAll('#home .btn-gold, #home .btn-outline');
+
+          if (!heroTitle) {
+            return;
+          }
+
+          const words = heroTitle.textContent.trim().split(/\s+/);
+          heroTitle.textContent = '';
+
+          words.forEach((word, index) => {
+            const span = document.createElement('span');
+            span.className = 'hero-word';
+            span.textContent = word;
+            heroTitle.appendChild(span);
+
+            if (index < words.length - 1) {
+              heroTitle.appendChild(document.createTextNode(' '));
+            }
+          });
+
+          heroText?.classList.add('hero-cinematic-subtext');
+          heroButtons.forEach((button) => button.classList.add('hero-cinematic-cta'));
+
+          runAfterIntro(() => {
+            const wordSpans = heroTitle.querySelectorAll('.hero-word');
+            wordSpans.forEach((span, index) => {
+              span.style.transitionDelay = `${index * 130}ms`;
+              span.classList.add('hero-cinematic-visible');
+            });
+
+            const baseDelay = wordSpans.length * 130 + 300;
+            window.setTimeout(() => heroText?.classList.add('hero-cinematic-visible'), baseDelay);
+            heroButtons.forEach((button, index) => {
+              window.setTimeout(() => button.classList.add('hero-cinematic-visible'), baseDelay + 200 + index * 200);
+            });
+          });
+        };
+
+        const animateStats = () => {
+          const statsSection = Array.from(document.querySelectorAll('section')).find((section) => {
+            const text = section.textContent || '';
+            return text.includes('1996') && text.includes('1000+') && text.includes('Clients');
+          });
+
+          if (!statsSection) {
+            return;
+          }
+
+          const statBlocks = statsSection.querySelectorAll('.p-4');
+          const statValues = statsSection.querySelectorAll('.font-playfair.text-gold');
+
+          statBlocks.forEach((block, index) => {
+            block.style.position = 'relative';
+            if (index < statBlocks.length - 1) {
+              const line = document.createElement('div');
+              line.className = 'stats-line';
+              block.appendChild(line);
+            }
+          });
+
+          const targets = [
+            { from: 1990, to: 1996, suffix: '' },
+            { from: 0, to: 7, suffix: '+' },
+            { from: 0, to: 1000, suffix: '+' },
+            { from: 0, to: 30, suffix: '+' }
+          ];
+
+          const observer = new IntersectionObserver((entries, activeObserver) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) {
+                return;
+              }
+
+              runAfterIntro(() => {
+                const startedAt = performance.now();
+
+                const step = (now) => {
+                  const progress = Math.min((now - startedAt) / 2000, 1);
+                  const eased = easeOut(progress);
+
+                  statValues.forEach((value, index) => {
+                    const config = targets[index];
+                    const current = Math.round(config.from + (config.to - config.from) * eased);
+                    value.textContent = `${current}${config.suffix}`;
+                  });
+
+                  if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                  } else {
+                    statsSection.querySelectorAll('.stats-line').forEach((line, index) => {
+                      window.setTimeout(() => line.classList.add('line-visible'), index * 120);
+                    });
+                  }
+                };
+
+                window.requestAnimationFrame(step);
+              });
+
+              activeObserver.unobserve(entry.target);
+            });
+          }, { threshold: 0.5 });
+
+          observer.observe(statsSection);
+        };
+
+        const animateCards = () => {
+          const cards = document.querySelectorAll('article.property-card');
+
+          cards.forEach((card, index) => {
+            card.classList.add('cinematic-card');
+            card.dataset.cinematicIndex = String(index);
+
+            if (!card.querySelector('.card-overlay')) {
+              const overlay = document.createElement('div');
+              overlay.className = 'card-overlay';
+              card.appendChild(overlay);
+            }
+          });
+
+          const observer = new IntersectionObserver((entries, activeObserver) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) {
+                return;
+              }
+
+              runAfterIntro(() => {
+                const index = Number(entry.target.dataset.cinematicIndex || 0);
+                entry.target.style.transitionDelay = `${index * 110}ms`;
+                entry.target.classList.add('card-visible');
+              });
+
+              activeObserver.unobserve(entry.target);
+            });
+          }, observerOptions);
+
+          cards.forEach((card) => observer.observe(card));
+        };
+
+        const animateSections = () => {
+          const labels = document.querySelectorAll('.section-label');
+          const headings = document.querySelectorAll('.section-heading');
+          const paragraphs = Array.from(document.querySelectorAll('p')).filter((paragraph) => (
+            paragraph.classList.contains('text-white/65') ||
+            paragraph.classList.contains('text-white/70') ||
+            paragraph.classList.contains('leading-8')
+          ));
+
+          labels.forEach((label) => label.classList.add('cinematic-reveal-label'));
+          paragraphs.forEach((paragraph) => paragraph.classList.add('cinematic-paragraph'));
+
+          headings.forEach((heading) => {
+            heading.classList.add('cinematic-heading');
+            if (!heading.previousElementSibling?.classList.contains('heading-line')) {
+              const line = document.createElement('div');
+              line.className = 'heading-line';
+              heading.parentElement.insertBefore(line, heading);
+            }
+          });
+
+          const reveal = (element, callback) => {
+            const observer = new IntersectionObserver((entries, activeObserver) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                  return;
+                }
+
+                runAfterIntro(callback);
+                activeObserver.unobserve(entry.target);
+              });
+            }, observerOptions);
+
+            observer.observe(element);
+          };
+
+          labels.forEach((label) => reveal(label, () => label.classList.add('reveal-visible')));
+          paragraphs.forEach((paragraph, index) => {
+            reveal(paragraph, () => {
+              paragraph.style.transitionDelay = `${Math.min(index % 3, 2) * 120}ms`;
+              paragraph.classList.add('reveal-visible');
+            });
+          });
+
+          headings.forEach((heading) => {
+            reveal(heading, () => {
+              const line = heading.previousElementSibling;
+              line?.classList.add('line-visible');
+              window.setTimeout(() => heading.classList.add('reveal-visible'), 300);
+            });
+          });
+        };
+
+        const animateAbout = () => {
+          const about = document.getElementById('about');
+          const aboutImage = about?.querySelector('img');
+          const textBlock = about?.querySelector('.section-label')?.parentElement;
+
+          if (!about || !aboutImage || !textBlock) {
+            return;
+          }
+
+          textBlock.classList.add('about-text-frame');
+
+          if (!textBlock.querySelector('.about-line')) {
+            const line = document.createElement('div');
+            line.className = 'about-line';
+            textBlock.prepend(line);
+          }
+
+          const updateParallax = () => {
+            const rect = about.getBoundingClientRect();
+            const progressPixels = window.innerHeight - rect.top;
+            const offset = (progressPixels - window.innerHeight * 0.5) * 0.4;
+            aboutImage.style.transform = `translateY(${offset}px)`;
+          };
+
+          const observer = new IntersectionObserver((entries, activeObserver) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) {
+                return;
+              }
+
+              runAfterIntro(() => textBlock.querySelector('.about-line')?.classList.add('line-visible'));
+              activeObserver.unobserve(entry.target);
+            });
+          }, observerOptions);
+
+          observer.observe(textBlock);
+          updateParallax();
+          window.addEventListener('scroll', updateParallax, { passive: true });
+          window.addEventListener('resize', updateParallax);
+        };
+
+        const enhanceServices = () => {
+          document.querySelectorAll('#services .border.border-white\\/10.bg-dark-2.p-7').forEach((card) => {
+            const number = card.querySelector('.text-3xl.text-gold');
+
+            if (!number || card.querySelector('.ghost-number')) {
+              return;
+            }
+
+            const ghost = document.createElement('span');
+            ghost.className = 'ghost-number';
+            ghost.textContent = number.textContent;
+            card.appendChild(ghost);
+          });
+        };
+
+        const enhanceNavbar = () => {
+          const header = document.getElementById('site-header');
+
+          if (!header) {
+            return;
+          }
+
+          const syncNav = () => {
+            header.classList.toggle('nav-scrolled', window.scrollY > 80);
+          };
+
+          syncNav();
+          window.addEventListener('scroll', syncNav, { passive: true });
+        };
+
+        const enhanceContactForm = () => {
+          document.querySelectorAll('#contact-form input, #contact-form select, #contact-form textarea').forEach((field) => {
+            const label = field.closest('label')?.querySelector('span');
+
+            field.addEventListener('focus', () => label?.classList.add('label-active'));
+            field.addEventListener('blur', () => {
+              if (!field.value) {
+                label?.classList.remove('label-active');
+              }
+            });
+          });
+        };
+
+        const animateFooter = () => {
+          const footer = document.querySelector('footer');
+
+          if (!footer) {
+            return;
+          }
+
+          const line = document.createElement('div');
+          line.className = 'footer-line';
+          footer.prepend(line);
+
+          const observer = new IntersectionObserver((entries, activeObserver) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) {
+                return;
+              }
+
+              runAfterIntro(() => line.classList.add('line-visible'));
+              activeObserver.unobserve(entry.target);
+            });
+          }, observerOptions);
+
+          observer.observe(footer);
+        };
+
+        const enhanceOffice = () => {
+          const officeCard = document.querySelector('#office .overflow-hidden.border');
+
+          if (!officeCard || officeCard.querySelector('.office-glow')) {
+            return;
+          }
+
+          const glow = document.createElement('div');
+          glow.className = 'office-glow';
+          officeCard.prepend(glow);
+        };
+
+        createCursor();
+        createIntro();
+        createScrollBar();
+        createGrain();
+        animateHero();
+        animateStats();
+        animateCards();
+        animateSections();
+        animateAbout();
+        enhanceServices();
+        enhanceNavbar();
+        enhanceContactForm();
+        animateFooter();
+        enhanceOffice();
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('view-all-btn');
+        const panel = document.getElementById('all-properties-panel');
+        const label = document.getElementById('view-all-label');
+        const arrow = document.getElementById('view-all-arrow');
+        const rows = document.querySelectorAll('.all-prop-row');
+        let isOpen = false;
+
+        if (!btn || !panel || !label || !arrow) {
+          return;
+        }
+
+        btn.addEventListener('click', () => {
+          if (!isOpen) {
+            panel.style.maxHeight = '9999px';
+            panel.style.opacity = '1';
+            panel.style.marginTop = '64px';
+            label.textContent = 'Close';
+            arrow.textContent = '\u2191';
+            isOpen = true;
+            rows.forEach((row, i) => {
+              setTimeout(() => {
+                row.classList.add('visible');
+              }, i * 90);
+            });
+            setTimeout(() => {
+              panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 200);
+          } else {
+            rows.forEach((row) => row.classList.remove('visible'));
+            setTimeout(() => {
+              panel.style.maxHeight = '0';
+              panel.style.opacity = '0';
+              panel.style.marginTop = '0';
+              label.textContent = 'View All Properties';
+              arrow.textContent = '\u2193';
+              isOpen = false;
+            }, 300);
+          }
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatWindow = document.getElementById('chat-window');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const suggestions = document.querySelectorAll('.chat-suggestion');
+
+        if (!chatToggle || !chatWindow || !chatMessages || !chatInput) {
+          return;
+        }
+
+        const firstMessage = chatMessages.querySelector('div');
+        if (firstMessage) {
+          firstMessage.className = 'chat-bubble chat-bot';
+          firstMessage.textContent = 'Hi. How can I help you today?';
+        }
+
+        function addMessage(content, type) {
+          const message = document.createElement('div');
+          message.className = `chat-bubble ${type === 'user' ? 'chat-user' : 'chat-bot'}`;
+          message.innerHTML = content;
+          chatMessages.appendChild(message);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function getResponse(message) {
+          const lower = message.toLowerCase();
+
+          if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey') || lower.includes('good morning') || lower.includes('good evening')) {
+            return 'Welcome to EID Properties & Construction. How can I assist you today?';
+          }
+
+          if (lower.includes('properties') || lower.includes('available') || lower.includes('listings') || lower.includes('what do you have')) {
+            return 'We currently have the following properties available:<br><br><b>Marina Waterfront Residence</b> - Dbayeh, Metn - $1,600,000<br><b>Kaslik Altavista Residence</b> - Kaslik - $250,000<br><b>Adma Hillside Villa</b> - Adma, Keserwan - $900,000<br><b>Kfarhbab Grand Residence</b> - Kfarhbab - $750,000<br><b>Ghosta Contemporary Villa</b> - Ghosta, Keserwan - Contact for Price<br><b>Kleiat Stone Villa</b> - Kleiat, Keserwan - Contact for Price';
+          }
+
+          if (lower.includes('villa')) {
+            return 'We have several villas available:<br><br><b>Adma Hillside Villa</b> - $900,000<br><b>Ghosta Contemporary Villa</b> - Contact for Price<br><b>Kleiat Stone Villa</b> - Contact for Price<br><br>Would you like more details on any of these?';
+          }
+
+          if (lower.includes('apartment') || lower.includes('flat')) {
+            return 'We have the <b>Kaslik Altavista Residence</b> apartment available for $250,000 in Kaslik. Would you like more information?';
+          }
+
+          if (lower.includes('price') || lower.includes('cost') || lower.includes('how much') || lower.includes('budget')) {
+            return 'Our property prices range from $250,000 to $1,600,000 depending on location and type.<br><br>Kaslik Residence - $250,000<br>Kfarhbab Grand Residence - $750,000<br>Adma Hillside Villa - $900,000<br>Marina Waterfront - $1,600,000<br>Ghosta & Kleiat Villas - Contact for Price';
+          }
+
+          if (lower.includes('location') || lower.includes('where') || lower.includes('area') || lower.includes('region') || lower.includes('keserwan') || lower.includes('jounieh') || lower.includes('metn') || lower.includes('adma') || lower.includes('kaslik') || lower.includes('ghosta') || lower.includes('kleiat') || lower.includes('kfarhbab')) {
+            return 'Our properties are located across premium Lebanese regions:<br><br>Adma - Keserwan<br>Kaslik - Jounieh District<br>Kfarhbab - Jounieh District<br>Ghosta - Keserwan<br>Kleiat - Keserwan<br>Waterfront City, Dbayeh - Metn';
+          }
+
+          if (lower.includes('contact') || lower.includes('reach') || lower.includes('call') || lower.includes('phone') || lower.includes('number')) {
+            return 'You can reach us at:<br><br><b>+961 76 033 933</b><br><b>davideid2004@icloud.com</b><br>Kaslik, Altavista Center, Lebanon';
+          }
+
+          if (lower.includes('email') || lower.includes('mail')) {
+            return 'You can email us at <b>davideid2004@icloud.com</b> and we will get back to you as soon as possible.';
+          }
+
+          if (lower.includes('office') || lower.includes('visit') || lower.includes('address')) {
+            return 'Our office is located at:<br><br><b>Kaslik, Altavista Center, Lebanon</b><br><br>Monday - Saturday: 8:00 AM - 7:00 PM<br>Sunday: Closed<br><br>We welcome private consultations.';
+          }
+
+          if (lower.includes('hours') || lower.includes('open') || lower.includes('working hours') || lower.includes('time') || lower.includes('when')) {
+            return 'We are open:<br><br><b>Monday - Saturday:</b> 8:00 AM - 7:00 PM<br><b>Sunday:</b> Closed';
+          }
+
+          if (lower.includes('about') || lower.includes('who are you') || lower.includes('company') || lower.includes('eid')) {
+            return '<b>EID Properties & Construction</b> has been a trusted name in Lebanese real estate since <b>1996</b>. With 30+ years of experience, we specialize in luxury property sales, premium construction, investment advisory, and real estate development.';
+          }
+
+          if (lower.includes('service') || lower.includes('what do you do') || lower.includes('offer')) {
+            return 'We offer:<br><br><b>Luxury Property Sales</b> - Curated residential and investment listings<br><b>Premium Construction</b> - Quality project execution<br><b>Investment Advisory</b> - Market guidance for buyers and investors<br><b>Real Estate Development</b> - Planning and delivery of refined residences';
+          }
+
+          if (lower.includes('buy') || lower.includes('purchase') || lower.includes('interested')) {
+            return 'We would love to help you find your perfect property. Please contact us at:<br><br><b>+961 76 033 933</b><br><b>davideid2004@icloud.com</b><br><br>You can also fill out the contact form on our website.';
+          }
+
+          if (lower.includes('invest') || lower.includes('investment') || lower.includes('return')) {
+            return 'Lebanon\'s Keserwan and Jounieh regions offer strong real estate investment potential. EID Properties provides expert investment advisory to help you make the right decision. Contact us at <b>+961 76 033 933</b> for a private consultation.';
+          }
+
+          if (lower.includes('construction') || lower.includes('build') || lower.includes('building') || lower.includes('project')) {
+            return 'EID Properties & Construction offers premium construction services focused on quality, timelines, and enduring finishes. Contact us at <b>+961 76 033 933</b> to discuss your construction project.';
+          }
+
+          if (lower.includes('whatsapp') || lower.includes('whats app') || lower.includes('message')) {
+            return 'You can contact us on WhatsApp at <b>+961 76 033 933</b>. We respond quickly to inquiries.';
+          }
+
+          if (lower.includes('consultation') || lower.includes('meeting') || lower.includes('appointment')) {
+            return 'We offer private consultations at our office in Kaslik, Altavista Center.<br><br>Call us: <b>+961 76 033 933</b><br>Email: <b>davideid2004@icloud.com</b><br>Monday - Saturday: 8:00 AM - 7:00 PM';
+          }
+
+          if (lower.includes('since') || lower.includes('experience') || lower.includes('years') || lower.includes('1996') || lower.includes('how long')) {
+            return 'EID Properties & Construction has been operating since <b>1996</b>, with over <b>30 years</b> of trusted real estate expertise in Lebanon.';
+          }
+
+          if (lower.includes('clients') || lower.includes('customers') || lower.includes('how many')) {
+            return 'We have proudly served over <b>1,000 clients</b> across Lebanon since our founding in 1996.';
+          }
+
+          if (lower.includes('thank') || lower.includes('thanks') || lower.includes('thank you')) {
+            return 'You are most welcome. We are here anytime you need help with properties or services.';
+          }
+
+          if (lower.includes('bye') || lower.includes('goodbye') || lower.includes('see you')) {
+            return 'Thank you for contacting EID Properties & Construction. We look forward to assisting you.';
+          }
+
+          return 'I can help you with:<br><br>Available Properties<br>Locations & Regions<br>Prices & Budget<br>Our Services<br>Contact Information<br>Office Hours<br>Consultations<br>Construction Projects<br>Investment Advisory<br><br>Please ask me anything about EID Properties & Construction.';
+        }
+
+        function sendMessage(text) {
+          const value = text.trim();
+          if (!value) {
+            return;
+          }
+
+          addMessage(value.replace(/[<>&]/g, (char) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[char])), 'user');
+          chatInput.value = '';
+
+          window.setTimeout(() => {
+            addMessage(getResponse(value), 'bot');
+          }, 250);
+        }
+
+        chatToggle.addEventListener('click', () => {
+          const isOpen = chatWindow.classList.contains('chat-open');
+          chatWindow.classList.toggle('hidden', isOpen);
+          chatWindow.classList.toggle('chat-open', !isOpen);
+
+          if (!isOpen) {
+            window.setTimeout(() => chatInput.focus(), 120);
+          }
+        });
+
+        chatInput.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter') {
+            event.preventDefault();
+            sendMessage(chatInput.value);
+          }
+        });
+
+        suggestions.forEach((button) => {
+          button.addEventListener('click', () => {
+            sendMessage(button.textContent || '');
+          });
+        });
+      });
+    </script>
+
+    
   </body>
 </html>

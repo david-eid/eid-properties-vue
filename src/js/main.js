@@ -14,6 +14,23 @@ const propertyCards = document.querySelectorAll('.property-card');
 const breadcrumbRegion = document.getElementById('breadcrumb-region');
 const breadcrumbLocation = document.getElementById('breadcrumb-location');
 const noProperties = document.getElementById('no-properties');
+const siteHeader = document.getElementById('site-header');
+const revealSelectors = [
+  'section:not(#home) .section-label',
+  'section:not(#home) .section-heading',
+  'section:not(#home) .section-heading + p',
+  '#properties .mb-10',
+  '#properties nav',
+  '.property-card',
+  '#about img',
+  '#about .leading-8',
+  '#services .grid > div',
+  '#office .overflow-hidden',
+  '#contact .leading-8',
+  '#contact .mt-8',
+  '#contact-form',
+  'footer'
+].join(',');
 
 const locationGroups = {
   'Jounieh District': [
@@ -163,6 +180,7 @@ const translations = {
 };
 
 let currentLanguage = localStorage.getItem('eidLanguage') || 'en';
+const hiddenCardTimers = new WeakMap();
 
 const getLocationCount = (locationName) => {
   const locations = Object.values(locationGroups).flat();
@@ -226,7 +244,30 @@ const updatePropertyFilters = () => {
     const locationMatches = selectedLocation === 'all' || card.dataset.location === selectedLocation;
     const isVisible = regionMatches && locationMatches;
 
-    card.classList.toggle('hidden', !isVisible);
+    if (isVisible) {
+      const timer = hiddenCardTimers.get(card);
+
+      if (timer) {
+        window.clearTimeout(timer);
+        hiddenCardTimers.delete(card);
+      }
+
+      card.classList.remove('hidden');
+      window.requestAnimationFrame(() => {
+        card.classList.remove('is-filter-hidden');
+      });
+    } else {
+      card.classList.add('is-filter-hidden');
+
+      if (!hiddenCardTimers.has(card)) {
+        const timer = window.setTimeout(() => {
+          card.classList.add('hidden');
+          hiddenCardTimers.delete(card);
+        }, 360);
+
+        hiddenCardTimers.set(card, timer);
+      }
+    }
 
     if (isVisible) {
       visibleCount += 1;
@@ -275,12 +316,69 @@ const applyLanguage = (language) => {
   localStorage.setItem('eidLanguage', language);
 };
 
+const initPageMotion = () => {
+  window.requestAnimationFrame(() => {
+    document.body.classList.add('page-loaded');
+  });
+};
+
+const syncNavbarState = () => {
+  if (!siteHeader) {
+    return;
+  }
+
+  siteHeader.classList.toggle('nav-scrolled', window.scrollY > 16);
+};
+
+const initScrollReveals = () => {
+  const revealElements = document.querySelectorAll(revealSelectors);
+
+  if (!revealElements.length) {
+    return;
+  }
+
+  revealElements.forEach((element, index) => {
+    element.classList.add('reveal-luxury');
+    element.style.setProperty('--reveal-delay', `${Math.min(index % 4, 3) * 90}ms`);
+  });
+
+  if (!('IntersectionObserver' in window)) {
+    revealElements.forEach((element) => element.classList.add('is-visible'));
+    return;
+  }
+
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    },
+    {
+      threshold: 0.16,
+      rootMargin: '0px 0px -8% 0px'
+    }
+  );
+
+  revealElements.forEach((element) => revealObserver.observe(element));
+};
+
+initPageMotion();
+
 if (year) {
   year.textContent = new Date().getFullYear();
 }
 
 applyTheme(localStorage.getItem('eidTheme') || 'dark');
 applyLanguage(currentLanguage);
+initScrollReveals();
+syncNavbarState();
+
+window.addEventListener('scroll', syncNavbarState, { passive: true });
 
 if (themeToggle) {
   themeToggle.addEventListener('click', () => {
