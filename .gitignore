@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -22,3 +23,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+=======
+node_modules/
+.DS_Store
+>>>>>>> 08b8b9aa845d6f13b5efb7d5f765bc5e261e6a06
