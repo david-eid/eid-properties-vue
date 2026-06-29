@@ -24,7 +24,8 @@ const hasDynamicBanners = computed(() => banners.value.length > 0);
 const activeBanner = computed(() => {
   return banners.value && banners.value.length > 0 ? banners.value[activeBannerIndex.value] || banners.value[0] : null;
 });
-const heroTitle = computed(() => activeBanner.value?.title || "EID Properties & Construction");
+const fallbackTitle = "EID Properties & Construction";
+const heroTitle = computed(() => activeBanner.value?.title?.toString().trim() || fallbackTitle);
 const heroWords = computed(() => heroTitle.value.split(/\s+/).filter(Boolean));
 const heroSubtitle = computed(() => activeBanner.value?.subtitle || "Where Trust Meets Value");
 const heroButtonTitle = computed(() => activeBanner.value?.button_title || "Explore Signature Properties");
@@ -162,7 +163,7 @@ onBeforeUnmount(() => {
 
     <div class="relative mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
       <div class="max-w-3xl">
-        <p class="section-label">{{ t("hero.label") }}</p>
+        <p class="section-label">{{ heroTitle }}</p>
         <h1 id="hero-title" class="font-playfair text-5xl font-bold leading-tight text-white md:text-7xl">
           <span
             v-for="(word, index) in heroWords"

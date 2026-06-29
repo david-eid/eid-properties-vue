@@ -21,10 +21,25 @@ async function fetchData(endpoint) {
   return await response.json();
 }
 
+function normalizeBanner(banner = {}) {
+  return {
+    ...banner,
+    title:
+      banner.title?.toString().trim() ||
+      banner.name?.toString().trim() ||
+      banner.heading?.toString().trim() ||
+      banner.headline?.toString().trim() ||
+      banner.content?.title?.toString().trim() ||
+      "",
+  };
+}
+
 export async function getBanners() {
   const data = await fetchData("banners");
   console.log("Raw banners response:", data);
-  return data.results || data;
+  const results = Array.isArray(data?.results) ? data.results : Array.isArray(data) ? data : data ? [data] : [];
+
+  return results.map(normalizeBanner);
 }
 
 export async function getProducts() {
